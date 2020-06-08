@@ -12,6 +12,7 @@ const serveFavicon = require("serve-favicon");
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
+const tripRouter = require("./routes/trip");
 
 const userRouter = require("./routes/user");
 const app = express();
@@ -43,6 +44,7 @@ app.use("/", indexRouter);
 app.use("/authentication", authenticationRouter);
 
 app.use("/user", userRouter);
+app.use("/trip", tripRouter);
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
