@@ -6,15 +6,14 @@ import SingleDayView from "./View/SingleDayView";
 import SinglePlaceView from "./View/SinglePlaceView";
 import SingleTripView from "./View/SingleTripView";
 import UserView from "./View/UserView";
-
-import { Route, Link, Switch } from "react-router-dom";
-
-import "./App.css";
-
 import Navbar from './Components/NavBar';
 import Place from './Components/Place';
 import Trip from './Components/Trip';
 import Day from './Components/Day';
+
+import { Route, Link, Switch } from "react-router-dom";
+
+import "./App.css";
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
         <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
         <Route component={Authentication} exact path="/authentication" />
       </Switch>
-      <h2>Hello world</h2>
     </div>
   );
 }
