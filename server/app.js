@@ -43,8 +43,8 @@ app.use(basicAuthenticationDeserializer);
 app.use("/", indexRouter);
 app.use("/authentication", authenticationRouter);
 
-app.use("/user", userRouter);
-app.use("/trip", tripRouter);
+app.use("/api/user", userRouter);
+app.use("/api/trip", tripRouter);
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));

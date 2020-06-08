@@ -3,35 +3,50 @@
 const { Router } = require("express");
 const userRouter = new Router();
 const routeGuard = require("./../middleware/route-guard");
+const User = require("./../models/user");
+const Trip = require("./../models/trip");
 
 userRouter.get("/:id", (req, res, next) => {
   //Show all trips from user
   res.json({ type: "success", data: { title: "All Trips from user" } });
 });
 
-userRouter.get("/:id/:tripId", (req, res, next) => {
-  //Show one trip from user
-  res.json({ type: "success", data: { title: "One trip" } });
+userRouter.post("/:id/new", (req, res, next) => {
+  //Show all trips from user
+  const { id } = req.params;
+  Trip.create({
+    name: "My New Trip",
+    userId: id,
+    allDays: []
+  });
+  res.json({ type: "success", data: { title: "All Trips from user" } });
 });
 
-userRouter.get("/:id/:tripId/:day/:place", (req, res, next) => {
-  // Show place from google api
-  res.json({ type: "success", data: { title: "Show Place from API" } });
+userRouter.get("/:id/:tripId", (req, res, next) => {
+  //Show one trip from user
+
+  res.json({ type: "success", data: { title: "One trip" } });
 });
 
 userRouter.get("/private", routeGuard, (req, res, next) => {
   res.json({});
 });
 
+//------------------------------------------------------------------
 //View / Edit day
 
 userRouter.get("/:id/:tripId/:day", (req, res, next) => {
   // show one day from trip
+  const { id, tripId, day } = req.params;
+  console.log(id, tripId, day);
   res.json({ type: "success", data: { title: "Day n" } });
 });
 userRouter.post("/:id/:tripId/:day", (req, res, next) => {
   // show one day from trip
   const { id, tripId, day } = req.params;
+
+  console.log(id, tripId, day);
+
   res.redirect(`/user/${id}/${tripId}/${day}`);
 });
 
@@ -40,6 +55,8 @@ userRouter.delete("/:id/:tripId/:day", (req, res, next) => {
   const { id, tripId } = req.params;
   res.redirect(`/user/${id}/${tripId}`);
 });
+
+//------------------------------------------------------------------
 
 //Edit a Trip
 
@@ -63,7 +80,17 @@ userRouter.post("/:id/:tripId/edit/:day", (req, res, next) => {
   // day 3 => 2, day 4 => 3, day 5 => 4...
 
   const { id, tripId, day } = req.params;
+
   res.redirect(`/user/${id}/${tripId}/edit`);
+});
+//------------------------------------------------------------------
+
+
+userRouter.get("/:id/:tripId/:day/:place", (req, res, next) => {
+  // Show place from google api
+
+
+  res.json({ type: "success", data: { title: "Show Place from API" } });
 });
 
 module.exports = userRouter;

@@ -1,11 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class Place extends Component {
   render() {
-    return (
-      <div>
-        Place Component
-      </div>
-    )
+    return <div>Place Component</div>;
   }
 }

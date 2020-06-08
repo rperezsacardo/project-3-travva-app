@@ -6,10 +6,10 @@ import SingleDayView from "./View/SingleDayView";
 import SinglePlaceView from "./View/SinglePlaceView";
 import SingleTripView from "./View/SingleTripView";
 import UserView from "./View/UserView";
-import Navbar from './Components/NavBar';
-import Place from './Components/Place';
-import Trip from './Components/Trip';
-import Day from './Components/Day';
+import Navbar from "./Components/NavBar";
+import Place from "./Components/Place";
+import Trip from "./Components/Trip";
+import Day from "./Components/Day";
 
 import { Route, Link, Switch } from "react-router-dom";
 
