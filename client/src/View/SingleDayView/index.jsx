@@ -22,12 +22,13 @@ class SingleDayView extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { query } = this.state;
-    console.log(`Query: ${query}`);
+    // console.log(`Query: ${query}`);
     getAllPlacesFromApi(query)
       .then((result) => {
-        //console.log(result);
+        console.log(result);
+        const newPlaces = result.places;
         this.setState({
-          places: [...result]
+          places: [...newPlaces]
         });
       })
       .catch((error) => console.log(error));
@@ -42,6 +43,7 @@ class SingleDayView extends Component {
   };
 
   render() {
+    console.log(this.state.places);
     return (
       <div>
         <h1>Map over Google api</h1>
