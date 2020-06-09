@@ -15,8 +15,6 @@ const Place = require("./../models/place");
 //   });
 // });
 
-// /api/place/search?city=
-
 placeRouter.get("/search", (req, res, next) => {
   const { city } = req.query;
   let results;
