@@ -22,7 +22,7 @@ placeRouter.get("/search", routeGuard, (req, res, next) => {
   let results;
   let places;
   // Make the call to open map api
-  const OPEN_TRIP_MAP_API_KEY = '5ae2e3f221c38a28845f05b6d03c9789d9979a9e53e1cbbe709efa34';
+  const OPEN_TRIP_MAP_API_KEY = '';
   const GOOGLE_PLACES_API_KEY = '';
   axios.get(`https://api.opentripmap.com/0.1/en/places/geoname?name=${city}&apikey=${OPEN_TRIP_MAP_API_KEY}`)
     .then(response => {
