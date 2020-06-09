@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { getAllPlacesFromApi } from "./../../services/placesService";
 
 export class NavBar extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ export class NavBar extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { query } = this.state;
-    alert(`Query: ${query}`);
+    // alert(`Query: ${query}`);
+    console.log(getAllPlacesFromApi(query));
   };
 
   handleInputChange = (event) => {
