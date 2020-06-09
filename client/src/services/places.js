@@ -5,10 +5,10 @@ const basePlace = axios.create({
 });
 
 const getAllPlacesFromApi = (term) => {
-  basePlace
+  //console.log(`term: ${term}`); error here <<
+  return basePlace
     .get(`/search?city=${term}`)
     .then((result) => {
-      console.log(result);
       const places = result.data;
       return Promise.resolve(places);
     })
