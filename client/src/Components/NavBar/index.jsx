@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { getAllPlacesFromApi } from "../../services/places";
+import { Link } from "react-router-dom";
+import { signOut } from "./../../services/authentication";
 
 export class NavBar extends Component {
   constructor(props) {
