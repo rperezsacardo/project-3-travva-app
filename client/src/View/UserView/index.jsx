@@ -5,14 +5,38 @@ import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllTripsFromUser, createTrip } from "./../../services/trip";
 class UserView extends Component {
-  render() {
-    console.log(this.props.match.params);
+  constructor() {
+    super();
+    this.state = {
+      trips: null
+    };
+  }
+
+  componentDidMount = () => {
     const user = this.props.match.params.id;
+    getAllTripsFromUser({ user })
+      .then((result) => {
+        this.setState({
+          trips: [...result]
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+  newTrip = () => {
+    console.log("all", this.props.match.params);
+    const user = this.props.match.params.id;
+    createTrip(user)
+      .then((result) => {})
+      .catch((error) => console.log(error));
+  };
+  render() {
+    console.log(this.state.trips);
     return (
       <div>
-        <NavBar />
+        {/* <NavBar /> */}
         <h1>User View</h1>
-        <button onClick={() => createTrip(user)}>New trip</button>
+
+        <button onClick={this.newTrip}>New trip</button>
       </div>
     );
   }
