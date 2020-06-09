@@ -66,7 +66,7 @@ placeRouter.get("/search", (req, res, next) => {
           const reference = result.photos[0].photo_reference.toString();
           photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${googlePlaceKey}`;
 
-          console.log(reference);
+          // console.log(reference);
         } else {
           // console.log("false");
         }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Authentication from "./View/Authentication/SignUp";
+import SignUp from "./View/Authentication/SignUp";
 import EditTripView from "./View/EditTripView";
 import HomeView from "./View/HomeView";
 import SingleDayView from "./View/SingleDayView";
@@ -28,7 +28,7 @@ export class App extends Component {
           <Route component={EditTripView} exact path="/user/:id/:tripId/edit" />
           <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
           <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
-          <Route component={Authentication} exact path="/authentication" />
+          <Route component={SignUp} exact path="/authentication/sign-up" />
         </Switch>
       </div>
     );

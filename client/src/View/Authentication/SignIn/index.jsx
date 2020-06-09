@@ -3,10 +3,10 @@ import NavBar from "../../../Components/NavBar";
 import Place from "../../../Components/Place";
 import Trip from "../../../Components/Trip";
 import Day from "../../../Components/Day";
-import { signUp, signIn } from "./../../../services/authentication";
-//import { authenticationService } from "../../../services/authentication"
+import { signUp, signIn } from "../../../services/authentication";
+import { authenticationService } from "../../../services/authentication";
 
-class SignUp extends Component {
+class Authentication extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,7 +21,7 @@ class SignUp extends Component {
     signUp({ email, password })
       .then((user) => {
         console.log(user);
-        this.props.history.push("/");
+        // this.props.user.push("/"))}
       })
       .catch((error) => console.log(error));
     alert(`Person with the email ${email} and the password ${password} has signed up.`);
@@ -55,7 +55,6 @@ class SignUp extends Component {
           <input
             name="password"
             placeholder="create password"
-            type="password"
             value={this.state.password}
             onChange={this.handleInputChange}
           />
@@ -67,6 +66,6 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default Authentication;
 
 //if good, duplicate for sign-in

@@ -1,24 +1,25 @@
 import axios from "axios";
-import { response } from "express";
 
 const baseAuthentication = axios.create({
   baseURL: "/api/authentication"
 });
 
 const signUp = (body) => {
-  baseAuthentication
-    .post("/sign-up")
+  console.log(body);
+  return baseAuthentication
+    .post("/sign-up", body)
     .then((response) => {
+      console.log(response);
       const data = response.data;
       const user = data.user;
-      return new Promise.resolve(user);
+      return Promise.resolve(user);
     })
     .catch((error) => {
       return Promise.reject(error);
     });
 };
 const signIn = (body) => {
-  baseAuthentication
+  return baseAuthentication
     .post("/sign-in")
     .then((response) => {
       const data = response.data;
@@ -29,3 +30,5 @@ const signIn = (body) => {
       return Promise.reject(error);
     });
 };
+
+export { signUp, signIn };
