@@ -1,21 +1,51 @@
 import axios from "axios";
 
+const basePlace = axios.create({
+  baseURL: "http://localhost:3010/api/place/"
+});
 const baseUser = axios.create({
-  baseURL: "/api/user"
+  baseURL: "http://localhost:3010/api/user/"
 });
 
 const getUser = () => {
-  return baseUser.get("/:id");
+  return baseUser
+    .get("/:id")
+    .then((result) => {
+      console.log(result);
+      const user = result.data;
+      return Promise.resolve(user);
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
 };
 
 const getTrips = () => {
-  return baseUser.get("/:id/:trips");
+  return baseUser
+    .get("/:id/:trips")
+    .then((result) => {
+      console.log(result);
+      const trips = result.data;
+      return Promise.resolve(trips);
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
 };
 
-export { getUser, getTrips };
-
-// const getAllPlacesFromApi = (lat, lon, radius, type) => {
-//   axios.get(
-//     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lon}&radius=${radius}types=${type}&name=harbour&key=${GOOGLE_PLACES_API_KEY}`
-//   );
-// };
+const getAllPlacesFromApi = (term) => {
+  basePlace
+    .get(`/search?city=${term}`)
+    .then((result) => {
+      console.log(result);
+      const places = result.data;
+      return Promise.resolve(places);
+    })
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
+};
+export { getUser, getTrips, getAllPlacesFromApi };

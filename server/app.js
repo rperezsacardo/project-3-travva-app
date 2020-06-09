@@ -42,7 +42,7 @@ app.use(
 app.use(basicAuthenticationDeserializer);
 
 app.use("/", indexRouter);
-app.use("/authentication", authenticationRouter);
+app.use("/api/authentication", authenticationRouter);
 
 app.use("/api/user", userRouter);
 app.use("/api/trip", tripRouter);
