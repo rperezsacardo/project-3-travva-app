@@ -2,18 +2,18 @@ import React from "react";
 import { getAllPlacesFromApi } from "../../services/places";
 
 export default function Place(props) {
+  const { name, photo, placeId } = props;
+  const photoWithKey = photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+  console.log(photoWithKey);
   return (
     <div className="place">
       <div className="place__media">
-        <img src={props.photo} alt={props.name} />
+        <img src={photoWithKey} alt={props.name} />
       </div>
       <div className="place__body">
-        <span>{props.name}</span>
-        {/*<em>{formatPrice(props.price)}</em>*/}
+        <span>{name}</span>
       </div>
-      <div className="place__actions">
-        <button onClick={() => props.changeQuantity(props.quantity + 1)}>+</button>
-      </div>
+      <div className="place__actions"></div>
     </div>
   );
 }

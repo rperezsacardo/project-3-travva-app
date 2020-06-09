@@ -42,8 +42,12 @@ class SingleDayView extends Component {
     });
   };
 
+  showPlaces = () => {
+    const allPlaces = this.state.places;
+  };
+
   render() {
-    console.log(this.state.places);
+    const allPlaces = this.state.places;
     return (
       <div>
         <h1>Map over Google api</h1>
@@ -60,6 +64,15 @@ class SingleDayView extends Component {
           />
           <button>🔎</button>
         </form>
+        <div>
+          {allPlaces && (
+            <>
+              {allPlaces.map((place) => {
+                return <Place {...place} />;
+              })}
+            </>
+          )}
+        </div>
         <Day />
       </div>
     );

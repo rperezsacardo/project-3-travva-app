@@ -34,15 +34,17 @@ placeRouter.get("/search", (req, res, next) => {
 
       //  Search at google api>>>>>>
       const radius = 15000;
-      const type = "point_of_interest";
+      const type = "tourist_attraction";
+      const lang = "en";
       return axios.get(
-        // 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.71667,-9.13333&radius=5000&types=food&name=harbour&key=AIzaSyBwCXzMfhi1tieDn8bqmltbt8BekodQXig'
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&types=${type}&name=harbour&key=${googlePlaceKey}`
+        // `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&radius=${radius}&types=${type}&name=harbour&key=${googlePlaceKey}`
+
+        `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&radius=${radius}&language=${lang}&types=${type}&key=${googlePlaceKey}`
       );
     })
     .then((response) => {
       //Find in our database this placeID
-      // console.log(response.data);
+      //console.log(response.data);
       const data = response.data;
       results = data.results;
       const googleMapsPlaceIds = results.map((result) => result.id);
@@ -62,16 +64,14 @@ placeRouter.get("/search", (req, res, next) => {
 
         if (result.photos) {
           const reference = result.photos[0].photo_reference.toString();
-          photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=${googlePlaceKey}`;
+          photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=`;
 
-          // console.log(reference);
-        } else {
-          // console.log("false");
+          console.log(photo);
         }
         return {
           placeId: result.id,
           name: result.name,
-          photo
+          photo: photo
         };
       });
       // console.log("formated", formatedResults);
