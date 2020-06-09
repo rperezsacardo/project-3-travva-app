@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getAllPlacesFromApi } from "./../../services/placesService";
+import { getAllPlacesFromApi } from "../../services/places";
 
 export class NavBar extends Component {
   constructor(props) {
