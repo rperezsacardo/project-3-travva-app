@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Authentication from "./View/Authentication";
+import Authentication from "./View/Authentication/SignUp";
 import EditTripView from "./View/EditTripView";
 import HomeView from "./View/HomeView";
 import SingleDayView from "./View/SingleDayView";
