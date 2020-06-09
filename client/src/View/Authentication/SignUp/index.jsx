@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import NavBar from "../../../Components/NavBar";
-import Place from "../../../Components/Place";
-import Trip from "../../../Components/Trip";
-import Day from "../../../Components/Day";
 import { signUp, signIn } from "./../../../services/authentication";
 //import { authenticationService } from "../../../services/authentication"
 
@@ -20,7 +16,6 @@ class SignUp extends Component {
     const { email, password } = this.state;
     signUp({ email, password })
       .then((user) => {
-        console.log(user);
         this.props.history.push("/");
       })
       .catch((error) => console.log(error));
@@ -29,13 +24,9 @@ class SignUp extends Component {
   };
 
   handleInputChange = (event) => {
-    const $inputDomNode = event.target;
-
-    const inputNameAttribute = $inputDomNode.name;
-    const value = $inputDomNode.value;
-
+    const { name, value } = event.target;
     this.setState({
-      [inputNameAttribute]: value
+      [name]: value
     });
   };
 

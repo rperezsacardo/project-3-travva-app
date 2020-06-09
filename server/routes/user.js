@@ -8,18 +8,22 @@ const Trip = require("./../models/trip");
 
 userRouter.get("/:id", (req, res, next) => {
   //Show all trips from user
-  res.json({ type: "success", data: { title: "All Trips from user" } });
+  const { id } = req.params;
+  Trip.find({ userId: id })
+    .then((result) => res.json({ result }))
+    .catch((error) => next(error));
 });
 
-userRouter.post("/:id/new", (req, res, next) => {
+userRouter.post("/:id", (req, res, next) => {
   //Show all trips from user
   const { id } = req.params;
   Trip.create({
     name: "My New Trip",
     userId: id,
     allDays: []
-  });
-  res.json({ type: "success", data: { title: "All Trips from user" } });
+  })
+    .then((trip) => res.json({ trip }))
+    .catch((error) => next(error));
 });
 
 userRouter.get("/:id/:tripId", (req, res, next) => {
@@ -85,10 +89,8 @@ userRouter.post("/:id/:tripId/edit/:day", (req, res, next) => {
 });
 //------------------------------------------------------------------
 
-
 userRouter.get("/:id/:tripId/:day/:place", (req, res, next) => {
   // Show place from google api
-
 
   res.json({ type: "success", data: { title: "Show Place from API" } });
 });

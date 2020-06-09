@@ -9,7 +9,6 @@ const signUp = (body) => {
   return baseAuthentication
     .post("/sign-up", body)
     .then((response) => {
-      console.log(response);
       const data = response.data;
       const user = data.user;
       return Promise.resolve(user);

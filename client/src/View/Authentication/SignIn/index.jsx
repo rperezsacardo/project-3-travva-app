@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import NavBar from "../../../Components/NavBar";
-import Place from "../../../Components/Place";
-import Trip from "../../../Components/Trip";
-import Day from "../../../Components/Day";
-import { signUp, signIn } from "../../../services/authentication";
-import { authenticationService } from "../../../services/authentication";
+import { signUp, signIn } from "./../../../services/authentication";
+//import { authenticationService } from "../../../services/authentication"
 
-class Authentication extends Component {
+class SignIn extends Component {
   constructor() {
     super();
     this.state = {
@@ -18,10 +14,9 @@ class Authentication extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    signUp({ email, password })
+    signIn({ email, password })
       .then((user) => {
-        console.log(user);
-        // this.props.user.push("/"))}
+        this.props.history.push("/");
       })
       .catch((error) => console.log(error));
     alert(`Person with the email ${email} and the password ${password} has signed up.`);
@@ -29,20 +24,16 @@ class Authentication extends Component {
   };
 
   handleInputChange = (event) => {
-    const $inputDomNode = event.target;
-
-    const inputNameAttribute = $inputDomNode.name;
-    const value = $inputDomNode.value;
-
+    const { name, value } = event.target;
     this.setState({
-      [inputNameAttribute]: value
+      [name]: value
     });
   };
 
   render() {
     return (
       <div className="App">
-        <h2>Sign up</h2>
+        <h2>Sign In</h2>
         <form onSubmit={this.handleFormSubmission}>
           <input
             name="email"
@@ -55,6 +46,7 @@ class Authentication extends Component {
           <input
             name="password"
             placeholder="create password"
+            type="password"
             value={this.state.password}
             onChange={this.handleInputChange}
           />
@@ -66,6 +58,6 @@ class Authentication extends Component {
   }
 }
 
-export default Authentication;
+export default SignIn;
 
 //if good, duplicate for sign-in

@@ -20,8 +20,7 @@ export class NavBar extends Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.name);
-    console.log(event.target.value);
+     
     const { name, value } = event.target;
     this.setState({
       [name]: value
