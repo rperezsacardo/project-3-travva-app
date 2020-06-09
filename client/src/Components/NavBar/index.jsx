@@ -13,7 +13,8 @@ export class NavBar extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { query } = this.state;
-    //getAllPlacesFromApi(this.state.query);
+    // alert(`Query: ${query}`);
+    console.log(getAllPlacesFromApi(query));
   };
 
   handleInputChange = (event) => {
