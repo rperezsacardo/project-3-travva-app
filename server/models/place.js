@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
   },
   placeId: {
     type: String
-  },
+  }
 });
 
 module.exports = mongoose.model("Place", schema);

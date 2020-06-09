@@ -13,6 +13,7 @@ const basicAuthenticationDeserializer = require("./middleware/basic-authenticati
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const tripRouter = require("./routes/trip");
+const placeRouter = require("./routes/place");
 
 const userRouter = require("./routes/user");
 const app = express();
@@ -45,6 +46,7 @@ app.use("/authentication", authenticationRouter);
 
 app.use("/api/user", userRouter);
 app.use("/api/trip", tripRouter);
+app.use("/api/place", placeRouter);
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
