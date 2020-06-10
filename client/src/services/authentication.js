@@ -25,7 +25,6 @@ const signIn = (body) => {
     .then((response) => {
       const data = response.data;
       const user = data.user;
-      console.log("service >>>>>>>", user);
       return Promise.resolve(user);
     })
     .catch((error) => {
@@ -50,7 +49,6 @@ const loadUserInfo = () => {
     .then((response) => {
       const data = response.data;
       const user = data.user;
-      console.log(user);
       return Promise.resolve(user);
     })
     .catch((error) => {
