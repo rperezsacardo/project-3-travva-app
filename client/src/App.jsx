@@ -33,7 +33,6 @@ export class App extends Component {
   componentDidMount = () => {
     loadUserInfo()
       .then((user) => {
-        console.log(user);
         this.updateUser(user);
       })
       .catch((error) => console.log(error));
@@ -44,13 +43,20 @@ export class App extends Component {
       user
     });
   };
+
+  sendUser = () => {};
+
   render() {
     return (
       <div className="App">
-        <Navbar user={this.state.user} updateUser={this.updateUser} />
+        <Navbar updateUser={this.updateUser} user={this.state.user} />
         <Switch>
           <Route component={HomeView} exact path="/" />
-          <Route component={UserView} exact path="/user/:id" />
+          <Route
+            render={(props) => <UserView {...props} user={this.state.user} />}
+            exact
+            path={`/user/:id`}
+          />
           <Route component={SingleTripView} exact path="/user/:id/:tripId" />
           <Route component={SingleTripView} exact path="/trip/:tripId" />{" "}
           {/* {Show The trip from other user} */}
