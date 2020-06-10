@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { signUp, signIn } from "./../../../services/authentication";
 //import { authenticationService } from "../../../services/authentication"
+import { Form, Button, Container } from "react-bootstrap";
 
 class SignUp extends Component {
   constructor() {
@@ -33,28 +34,42 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h2>Sign up</h2>
-        <form onSubmit={this.handleFormSubmission}>
-          <input
-            name="email"
-            type="email"
-            placeholder="create email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
+      <Container md="auto" className="mt-5">
+        <Form fluid className="Form" onSubmit={this.handleFormSubmission}>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              name="email"
+              type="email"
+              placeholder="Enter email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
 
-          <input
-            name="password"
-            placeholder="create password"
-            type="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-          />
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </Form.Group>
 
-          <button>Create Account</button>
-        </form>
-      </div>
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Agree to Terms and Conditions" />
+          </Form.Group>
+
+          <Button variant="success" type="submit">
+            Create Account
+          </Button>
+        </Form>
+      </Container>
     );
   }
 }

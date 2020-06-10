@@ -19,7 +19,9 @@ class HomeView extends Component {
             started.
           </p>
           <p>
-            <Button variant="success">Sign up</Button>
+            <Button variant="success">
+              <a href="/authentication/sign-up">Sign up</a>
+            </Button>
           </p>
         </Jumbotron>
         <Container>
