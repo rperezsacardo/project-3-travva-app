@@ -19,6 +19,8 @@ placeRouter.get("/search", (req, res, next) => {
   const { city } = req.query;
   let results;
   let places;
+  let googleMapsPlaceIds;
+  let detail;
   console.log(city);
   // Make the call to open map api
   const openTripKey = process.env.OPEN_TRIP_MAP_API_KEY;
@@ -47,16 +49,25 @@ placeRouter.get("/search", (req, res, next) => {
       //console.log(response.data);
       const data = response.data;
       results = data.results;
-      const googleMapsPlaceIds = results.map((result) => result.id);
+      googleMapsPlaceIds = results.map((result) => result.id);
       console.log("googleplaces ID", googleMapsPlaceIds);
       return Place.find({ placeId: googleMapsPlaceIds });
     })
     .then((documents) => {
       //If this result do not exist in our database we will request this info from google api
       places = documents;
+      //console.log(results)
+      console.log("documents >>>>>", documents);
+
       const filteredResults = results.filter((result) => {
-        return !places.includes((place) => place.placeId === result.id); // look this after
+        // console.log(!documents.filter((document) => document.placeId === result.id).length);
+        return !documents.filter((document) => document.placeId === result.id).length;
       });
+
+      // console.log("filter  >>>>>>>>>>>>>>>>>", filteredResults);
+      console.log("places length >>>>>>>>>>>>>>>>>", places.length);
+      console.log("results length >>>>>>>>>>>>>>>>>", results.length);
+      console.log("filter length >>>>>>>>>>>>>>>>>", filteredResults.length);
 
       // Now we are saving photo as string, we can use virtuals to solve it
       const formatedResults = filteredResults.map((result) => {
@@ -71,7 +82,9 @@ placeRouter.get("/search", (req, res, next) => {
         return {
           placeId: result.id,
           name: result.name,
-          photo: photo
+          detail: `https://maps.googleapis.com/maps/api/place/details/json?placeid=${result.id}&key=`,
+          photo: photo,
+          rating: result.rating
         };
       });
       // console.log("formated", formatedResults);
@@ -79,9 +92,15 @@ placeRouter.get("/search", (req, res, next) => {
     })
     .then((newlyCreatedPlaces) => {
       // console.log("new places", newlyCreatedPlaces);
-      res.json({
-        places: [...places, ...newlyCreatedPlaces]
-      });
+      if (newlyCreatedPlaces) {
+        res.json({
+          places: [...places, ...newlyCreatedPlaces]
+        });
+      } else {
+        res.json({
+          places: [...places]
+        });
+      }
     })
     .catch((error) => {
       console.log(error);

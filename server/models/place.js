@@ -9,6 +9,12 @@ const schema = new mongoose.Schema({
   photo: {
     type: String
   },
+  detail: {
+    type: String
+  },
+  rating: {
+    type: String
+  },
   placeId: {
     type: String
   }
