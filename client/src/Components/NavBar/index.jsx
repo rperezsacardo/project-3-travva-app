@@ -79,7 +79,7 @@ export class NavBar extends Component {
               <>
                 <NavDropdown title="Account" id="basic-nav-dropdown">
                   <NavDropdown.Item>
-                    <Link to={`${this.props.user._id}`}>My Profile</Link>
+                    <Link to={`/user/${this.props.user._id}`}>My Profile</Link>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/user/:id/:tripId/:day">My Trips</NavDropdown.Item>

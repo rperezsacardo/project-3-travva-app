@@ -7,10 +7,13 @@ const User = require("./../models/user");
 const Trip = require("./../models/trip");
 
 userRouter.get("/:id", (req, res, next) => {
-  //Show all trips from user
-  const { id } = req.params;
+  console.log("all trips"); //Show all trips from user
+  const id = req.params.id;
   Trip.find({ userId: id })
-    .then((result) => res.json({ result }))
+    .then((result) => {
+      console.log(result);
+      res.json({ result });
+    })
     .catch((error) => next(error));
 });
 
