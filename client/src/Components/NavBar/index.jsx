@@ -3,6 +3,7 @@ import { getAllPlacesFromApi } from "../../services/places";
 import { signOut } from "./../../services/authentication";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { Link, Switch, Route } from "react-router-dom";
+import "./NavBar.css";
 
 export class NavBar extends Component {
   constructor(props) {
@@ -45,15 +46,18 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Brand Image</Navbar.Brand>
+      <Navbar className="NavBar" expand="lg" variant="white">
+        <Navbar.Brand href="/">
+          <img src="travva-navbar.png" height="29px" />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Trips</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Account" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/user/:id">My Profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/user/:id/:tripId/:day">My Trips</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4" onClick={this.signOutAndDeleteSession}>
                 Sign Out
@@ -71,7 +75,7 @@ export class NavBar extends Component {
               onChange={this.handleInputChange}
               autoComplete="on"
             />
-            <Button variant="outline-success">🔎</Button>
+            <Button variant="outline-secondary">+</Button>
           </Form>
         </Navbar.Collapse>
       </Navbar>
