@@ -4,8 +4,11 @@ import { Card, Button, Badge } from "react-bootstrap";
 
 export default function Place(props) {
   const { name, photo, placeId } = props;
-  const photoWithKey = photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
-  console.log(photoWithKey);
+  const photoWithKey =
+    photo === undefined
+      ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+      : photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+  // console.log(photoWithKey);
   // addOrRemovePlace=()=>{
   //   this.setState({
   //     place: !this.state.place
