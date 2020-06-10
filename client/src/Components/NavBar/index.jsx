@@ -64,24 +64,28 @@ export class NavBar extends Component {
   render() {
     return (
       <Navbar className="NavBar" expand="lg" variant="white">
-        <Navbar.Brand href="/">
-          <img src="travva-navbar.png" height="29px" />
+        <Navbar.Brand>
+          <Link to="/">
+            <img src="travva-navbar.png" height="29px" />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+          <Nav className="ml-auto">
+            <Nav.Link>
+              <Link to="/">Home</Link>
+            </Nav.Link>
             {this.props.user && (
               <>
                 <NavDropdown title="Account" id="basic-nav-dropdown">
-                  <NavDropdown.Item href={`user/${this.props.user._id}`}>
-                    My Profile
+                  <NavDropdown.Item>
+                    <Link to={`${this.props.user._id}`}>My Profile</Link>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="/user/:id/:tripId/:day">My Trips</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4" onClick={this.signOutAndDeleteSession}>
-                    Sign Out
+                  <NavDropdown.Item onClick={this.signOutAndDeleteSession}>
+                    <Link to="/">Sign Out</Link>
                   </NavDropdown.Item>
                 </NavDropdown>
               </>
