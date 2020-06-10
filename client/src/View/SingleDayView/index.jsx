@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import NavBar from "./../../Components/NavBar";
 import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
+
+//import containers with underlying styles
+import { Container, Row, Col, Form } from "react-bootstrap";
 
 class SingleDayView extends Component {
   constructor(props) {
@@ -13,6 +16,16 @@ class SingleDayView extends Component {
       places: null
     };
   }
+
+  /*const [added, notAdded] = useState(false)
+
+  function displayAsAdded(){
+    added(true)
+
+    setTimeout(() => {
+      notAdded(false)
+    }, 500);
+  }*/
 
   /*componentDidMount() {
     ifthis.setState places)
@@ -50,8 +63,9 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     return (
       <div>
+        <NavBar/>
         <h1>Map over Google api</h1>
-        <form onSubmit={this.handleFormSubmission}>
+        <Form onSubmit={this.handleFormSubmission}>
           <label>Search Form</label>
           <input
             name="query"
@@ -63,14 +77,23 @@ class SingleDayView extends Component {
             autoComplete="on"
           />
           <button>🔎</button>
-        </form>
+        </Form>
+
         <div>
           {allPlaces && (
-            <>
-              {allPlaces.map((place) => {
-                return <Place {...place} />;
-              })}
-            </>
+            <Container>
+              <Row>
+                <>
+                  {allPlaces.map((place) => {
+                    return (
+                      <Col sm={4} className="mb-5">
+                        <Place {...place} />
+                      </Col>
+                    );
+                  })}
+                </>
+              </Row>
+            </Container>
           )}
         </div>
         <Day />

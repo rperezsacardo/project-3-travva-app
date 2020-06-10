@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import NavBar from './../../Components/NavBar';
-import Place from './../../Components/Place';
-import Trip from './../../Components/Trip';
-import Day from './../../Components/Day';
+import React, { Component } from "react";
+import NavBar from "./../../Components/NavBar";
+import Place from "./../../Components/Place";
+import Trip from "./../../Components/Trip";
+import Day from "./../../Components/Day";
 
 class HomeView extends Component {
   render() {
@@ -11,7 +11,7 @@ class HomeView extends Component {
         <NavBar />
         <h1>Home View</h1>
       </div>
-    )
+    );
   }
 }
 

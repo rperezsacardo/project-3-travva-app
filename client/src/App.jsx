@@ -12,6 +12,10 @@ import Place from "./Components/Place";
 import Trip from "./Components/Trip";
 import Day from "./Components/Day";
 
+//import containers with underlying styles
+import { Container, Row, Col } from 'react-bootstrap';
+//import data from outside location
+
 import { Route, Link, Switch } from "react-router-dom";
 
 import "./App.css";
