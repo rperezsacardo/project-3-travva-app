@@ -22,7 +22,10 @@ userRouter.post("/:id", (req, res, next) => {
     userId: id,
     allDays: []
   })
-    .then((trip) => res.json({ trip }))
+    .then((trip) => {
+      console.log("new trip", trip);
+      res.json({ trip });
+    })
     .catch((error) => next(error));
 });
 

@@ -22,17 +22,22 @@ class UserView extends Component {
       })
       .catch((error) => console.log(error));
   };
+
   newTrip = () => {
     // console.log("all", this.props.match.params);
     const user = this.props.match.params.id;
     createTrip(user)
       .then((result) => {
         console.log("result >>>>>>>>", result);
+        this.setState({
+          trips: [...result]
+        });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("error", error));
   };
+
   render() {
-    console.log(this.props);
+    console.log(typeof this.state.trips);
     return (
       <div>
         {/* <NavBar /> */}

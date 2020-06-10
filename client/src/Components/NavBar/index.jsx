@@ -69,7 +69,7 @@ export class NavBar extends Component {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
+          <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
             {this.props.user && (
               <>

@@ -9,6 +9,7 @@ const getSingleTrip = (body) => {
   return baseApi
     .get(`/${user}/${tripID}/`)
     .then((result) => {
+      console.log("service >>>>", result.data);
       const trip = result.data;
       return Promise.reject(trip);
     })
@@ -22,6 +23,7 @@ const createTrip = (id) => {
   return baseApi
     .post(`/user/${id}`)
     .then((result) => {
+      console.log(result.data);
       const trip = result.data;
       return Promise.reject(trip);
     })
