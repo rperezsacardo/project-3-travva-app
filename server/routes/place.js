@@ -48,7 +48,7 @@ placeRouter.get("/search", (req, res, next) => {
       const data = response.data;
       results = data.results;
       const googleMapsPlaceIds = results.map((result) => result.id);
-      // console.log("googleplaces ID", googleMapsPlaceIds);
+      console.log("googleplaces ID", googleMapsPlaceIds);
       return Place.find({ placeId: googleMapsPlaceIds });
     })
     .then((documents) => {

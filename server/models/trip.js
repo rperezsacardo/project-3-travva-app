@@ -16,7 +16,8 @@ const schema = new mongoose.Schema({
     {
       dayPlan: [
         {
-          type: String // id from Places
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Place" //
         }
       ]
     }
