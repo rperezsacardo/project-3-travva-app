@@ -4,6 +4,7 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import index from "./index.css";
+import { Link } from "react-router-dom";
 
 import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
 
@@ -11,7 +12,6 @@ class HomeView extends Component {
   render() {
     return (
       <div>
-        <NavBar className="pb-3" />
         <Jumbotron fluid className="pl-3 pr-1">
           <h1>Your world, discovered.</h1>
           <p>
@@ -20,7 +20,9 @@ class HomeView extends Component {
           </p>
           <p>
             <Button variant="success">
-              <a href="/authentication/sign-up">Sign up</a>
+              <Link className="white" to="/authentication/sign-up">
+                Sign up
+              </Link>
             </Button>
           </p>
         </Jumbotron>

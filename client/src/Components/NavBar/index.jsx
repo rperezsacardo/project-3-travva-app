@@ -65,6 +65,8 @@ export class NavBar extends Component {
     return (
       <Navbar className="NavBar" expand="lg" variant="white">
         <Navbar.Brand>
+          {" "}
+          {/*menu items for all users*/}
           <Link to="/">
             <img src="travva-navbar.png" height="29px" />
           </Link>
@@ -73,11 +75,25 @@ export class NavBar extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>
-              <Link to="/">Home</Link>
+              <Link className="white" to="/">
+                Home
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link className="white" to="/authentication/sign-in">
+                Sign In
+              </Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link className="white" to="/authentication/sign-up">
+                Sign Up
+              </Link>
             </Nav.Link>
             {this.props.user && (
               <>
-                <NavDropdown title="Account" id="basic-nav-dropdown">
+                {" "}
+                {/*dropdown for logged-in users only*/}
+                <NavDropdown className="white" title="Account" id="basic-nav-dropdown">
                   <NavDropdown.Item>
                     <Link to={`${this.props.user._id}`}>My Profile</Link>
                   </NavDropdown.Item>

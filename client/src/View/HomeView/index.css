@@ -5,3 +5,12 @@ img {
 Footer {
   background-color: grey;
 }
+
+.white,
+.white:visited {
+  color: white;
+}
+
+.white:hover {
+  color: white;
+}

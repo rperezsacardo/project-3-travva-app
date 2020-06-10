@@ -63,7 +63,6 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     return (
       <div>
-        <NavBar/>
         <h1>Map over Google api</h1>
         <Form onSubmit={this.handleFormSubmission}>
           <label>Search Form</label>

@@ -2,6 +2,11 @@
   background-color: #0d2c56;
 }
 
-.NavBar-white {
+.white,
+.white:visited {
   color: #e3e7ec;
+}
+
+.white:hover {
+  color: white;
 }
