@@ -13,31 +13,31 @@ class UserView extends Component {
   }
 
   componentDidMount = () => {
-    const user = this.props.match.params.id;
-    getAllTripsFromUser({ user })
-      .then((result) => {
-        this.setState({
-          trips: [...result]
-        });
-      })
-      .catch((error) => console.log(error));
+    this.allTrips();
   };
 
   newTrip = () => {
     // console.log("all", this.props.match.params);
     const user = this.props.match.params.id;
     createTrip(user)
-      .then((result) => {
-        console.log("result >>>>>>>>", result);
-        this.setState({
-          trips: [...result]
-        });
-      })
+      .then((result) => this.allTrips())
       .catch((error) => console.log("error", error));
   };
 
+  allTrips = () => {
+    const user = this.props.match.params.id;
+    getAllTripsFromUser({ user })
+      .then((result) => {
+        console.log("result >>>>>>>>", result);
+        this.setState({
+          trips: result
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+
   render() {
-    console.log(typeof this.state.trips);
+    console.log("state", this.state.trips);
     return (
       <div>
         {/* <NavBar /> */}
