@@ -57,17 +57,17 @@ placeRouter.get("/search", (req, res, next) => {
       //If this result do not exist in our database we will request this info from google api
       places = documents;
       //console.log(results)
-      console.log("documents >>>>>", documents);
 
       const filteredResults = results.filter((result) => {
         // console.log(!documents.filter((document) => document.placeId === result.id).length);
         return !documents.filter((document) => document.placeId === result.id).length;
       });
 
+      // console.log("documents >>>>>", documents);
       // console.log("filter  >>>>>>>>>>>>>>>>>", filteredResults);
-      console.log("places length >>>>>>>>>>>>>>>>>", places.length);
-      console.log("results length >>>>>>>>>>>>>>>>>", results.length);
-      console.log("filter length >>>>>>>>>>>>>>>>>", filteredResults.length);
+      // console.log("places length >>>>>>>>>>>>>>>>>", places.length);
+      // console.log("results length >>>>>>>>>>>>>>>>>", results.length);
+      // console.log("filter length >>>>>>>>>>>>>>>>>", filteredResults.length);
 
       // Now we are saving photo as string, we can use virtuals to solve it
       const formatedResults = filteredResults.map((result) => {
@@ -76,8 +76,6 @@ placeRouter.get("/search", (req, res, next) => {
         if (result.photos) {
           const reference = result.photos[0].photo_reference.toString();
           photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${reference}&key=`;
-
-          console.log(photo);
         }
         return {
           placeId: result.id,

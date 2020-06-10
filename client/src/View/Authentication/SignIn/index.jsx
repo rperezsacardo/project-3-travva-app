@@ -16,6 +16,7 @@ class SignIn extends Component {
     const { email, password } = this.state;
     signIn({ email, password })
       .then((user) => {
+        this.props.updateUser(user);
         this.props.history.push("/");
       })
       .catch((error) => console.log(error));
@@ -51,7 +52,7 @@ class SignIn extends Component {
             onChange={this.handleInputChange}
           />
 
-          <button>Create Account</button>
+          <button>Sign In</button>
         </form>
       </div>
     );

@@ -4,7 +4,10 @@ import { Card, Button, Badge } from "react-bootstrap";
 
 export default function Place(props) {
   const { name, photo, placeId } = props;
-  const photoWithKey = photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
+  const photoWithKey =
+    photo === undefined
+      ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+      : photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
   console.log(photoWithKey);
   // addOrRemovePlace=()=>{
   //   this.setState({
@@ -16,7 +19,11 @@ export default function Place(props) {
 
   return (
     <Card className="shadow-sm rounded h-100">
-      <Card.Img variant="top" src={photoWithKey} alt={props.name} />
+      <Card.Img
+        variant="top"
+        src={photoWithKey}
+        al={"https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"}
+      />
       <Card.Body>
         <div className="mb-2">
           <Card.Title className="mb-0">{name}</Card.Title>

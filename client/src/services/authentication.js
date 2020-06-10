@@ -17,17 +17,45 @@ const signUp = (body) => {
       return Promise.reject(error);
     });
 };
+
 const signIn = (body) => {
+  console.log(body);
   return baseAuthentication
-    .post("/sign-in")
+    .post("/sign-in", body)
     .then((response) => {
       const data = response.data;
       const user = data.user;
-      return new Promise.resolve(user);
+      console.log("service >>>>>>>", user);
+      return Promise.resolve(user);
     })
     .catch((error) => {
       return Promise.reject(error);
     });
 };
 
-export { signUp, signIn };
+const signOut = (body) => {
+  return baseAuthentication
+    .post("/sign-out")
+    .then((response) => {
+      return Promise.resolve();
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
+const loadUserInfo = () => {
+  return baseAuthentication
+    .get("/me")
+    .then((response) => {
+      const data = response.data;
+      const user = data.user;
+      console.log(user);
+      return Promise.resolve(user);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
+export { signUp, signIn, signOut, loadUserInfo };

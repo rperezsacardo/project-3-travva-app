@@ -12,8 +12,10 @@ import Place from "./Components/Place";
 import Trip from "./Components/Trip";
 import Day from "./Components/Day";
 
+import { loadUserInfo } from "./services/authentication";
+
 //import containers with underlying styles
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from "react-bootstrap";
 //import data from outside location
 
 import { Route, Link, Switch } from "react-router-dom";
@@ -21,9 +23,31 @@ import { Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: null
+    };
+  }
+
+  componentDidMount = () => {
+    loadUserInfo()
+      .then((user) => {
+        console.log(user);
+        this.updateUser(user);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  updateUser = (user) => {
+    this.setState({
+      user
+    });
+  };
   render() {
     return (
       <div className="App">
+        <Navbar user={this.state.user} updateUser={this.updateUser} />
         <Switch>
           <Route component={HomeView} exact path="/" />
           <Route component={UserView} exact path="/user/:id" />
@@ -33,8 +57,16 @@ export class App extends Component {
           <Route component={EditTripView} exact path="/user/:id/:tripId/edit" />
           <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
           <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
-          <Route component={SignUp} exact path="/authentication/sign-up" />
-          <Route component={SignIn} exact path="/authentication/sign-in" />
+          <Route
+            exact
+            path="/authentication/sign-up"
+            render={(props) => <SignUp {...props} updateUser={this.updateUser} />}
+          />
+          <Route
+            exact
+            path="/authentication/sign-in"
+            render={(props) => <SignIn {...props} updateUser={this.updateUser} />}
+          />
         </Switch>
       </div>
     );

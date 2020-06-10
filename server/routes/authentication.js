@@ -29,6 +29,7 @@ router.post("/sign-up", (req, res, next) => {
 });
 
 router.post("/sign-in", (req, res, next) => {
+  console.log("in");
   let user;
   const { email, password } = req.body;
   User.findOne({ email })
@@ -53,6 +54,13 @@ router.post("/sign-in", (req, res, next) => {
     });
 });
 
+router.get("/me", (req, res, next) => {
+  //console.log("/me visted");
+  // console.log(req.user);
+  res.json({
+    user: req.user || null
+  });
+});
 router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});

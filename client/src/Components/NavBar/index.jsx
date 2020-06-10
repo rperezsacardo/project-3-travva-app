@@ -34,6 +34,15 @@ export class NavBar extends Component {
     });
   };
 
+  signOutAndDeleteSession = () => {
+    signOut()
+      .then(() => {
+        this.props.updateUser();
+        //this.props.history.push("/");
+      })
+      .catch();
+  };
+
   render() {
     return (
       <Navbar bg="light" expand="lg">
@@ -46,7 +55,9 @@ export class NavBar extends Component {
             <NavDropdown title="Account" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Sign Out</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4" onClick={this.signOutAndDeleteSession}>
+                Sign Out
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form inline onSubmit={this.handleFormSubmission}>

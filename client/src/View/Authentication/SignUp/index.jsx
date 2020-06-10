@@ -16,6 +16,7 @@ class SignUp extends Component {
     const { email, password } = this.state;
     signUp({ email, password })
       .then((user) => {
+        this.props.updateUser(user);
         this.props.history.push("/");
       })
       .catch((error) => console.log(error));
