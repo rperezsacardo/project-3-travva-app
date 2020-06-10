@@ -2,20 +2,12 @@ import React from "react";
 import { getAllPlacesFromApi } from "../../services/places";
 import { Card, Button, Badge } from "react-bootstrap";
 
-export default function Place(props) {
+function Place(props) {
   const { name, photo, placeId } = props;
   const photoWithKey =
     photo === undefined
       ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
       : photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
-  // console.log(photoWithKey);
-  // addOrRemovePlace=()=>{
-  //   this.setState({
-  //     place: !this.state.place
-
-  //   })
-
-  // }
 
   return (
     <Card className="shadow-sm rounded h-100">
@@ -39,6 +31,4 @@ export default function Place(props) {
   );
 }
 
-//placeId
-
-//button {/*onClick={this.addOrRemovePlace}*/}
+export default Place;

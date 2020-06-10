@@ -4,16 +4,28 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllTripsFromUser, createTrip } from "./../../services/trip";
+import { Card, Button, Badge, Container, Row, Col } from "react-bootstrap";
+
 class UserView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       trips: null
     };
   }
 
   componentDidMount = () => {
-    this.allTrips();
+    const user = this.props.match.params.id;
+    getAllTripsFromUser({ user })
+      .then((result) => {
+        console.log("result >>>>>>>>", result);
+
+        this.setState({
+          trips: result
+        });
+        console.log(typeof allTrips);
+      })
+      .catch((error) => console.log(error));
   };
 
   newTrip = () => {
@@ -37,16 +49,37 @@ class UserView extends Component {
   };
 
   render() {
-    console.log("state", this.state.trips);
+    const allTrips = this.state.trips;
+    //console.log("state", this.state.trips);
     return (
       <div>
-        {/* <NavBar /> */}
-        <h1>User View</h1>
-
+        <h2>User View</h2>
         <button onClick={this.newTrip}>New trip</button>
+        {allTrips && (
+          <>
+            {allTrips.map((trip) => {
+              return <Trip {...trip} />;
+            })}
+          </>
+        )}
       </div>
     );
   }
 }
 
 export default UserView;
+
+//<Container>
+//<Row>
+//</Row>
+//</Container>
+//<Col sm={4} className="mb-5">
+//</Col>
+
+// {allTrips && (
+//   <>
+//     {allTrips.map((trip) => {
+//       return <Trip {...trip} />;
+//     })}
+//   </>
+// )}

@@ -4,8 +4,6 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
-
-//import containers with underlying styles
 import { Container, Row, Col, Form } from "react-bootstrap";
 
 class SingleDayView extends Component {
@@ -16,16 +14,6 @@ class SingleDayView extends Component {
       places: null
     };
   }
-
-  /*const [added, notAdded] = useState(false)
-
-  function displayAsAdded(){
-    added(true)
-
-    setTimeout(() => {
-      notAdded(false)
-    }, 500);
-  }*/
 
   /*componentDidMount() {
     ifthis.setState places)
@@ -63,7 +51,6 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     return (
       <div>
-        <h1>Map over Google api</h1>
         <Form onSubmit={this.handleFormSubmission}>
           <label>Search Form</label>
           <input
@@ -95,7 +82,6 @@ class SingleDayView extends Component {
             </Container>
           )}
         </div>
-        <Day />
       </div>
     );
   }
