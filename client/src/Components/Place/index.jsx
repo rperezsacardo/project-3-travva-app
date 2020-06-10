@@ -8,11 +8,7 @@ export default function Place(props) {
     photo === undefined
       ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
       : photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
-<<<<<<< HEAD
-  console.log(photoWithKey);
-=======
   // console.log(photoWithKey);
->>>>>>> 514c7dc5f9b45c09be5e55380b2e28ec4011a0d0
   // addOrRemovePlace=()=>{
   //   this.setState({
   //     place: !this.state.place
