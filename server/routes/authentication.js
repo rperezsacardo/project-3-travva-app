@@ -56,7 +56,7 @@ router.post("/sign-in", (req, res, next) => {
 
 router.get("/me", (req, res, next) => {
   //console.log("/me visted");
-  // console.log(req.user);
+  console.log(req.user);
   res.json({
     user: req.user || null
   });
