@@ -2,12 +2,10 @@ import axios from "axios";
 
 const newDay = (body) => {
   const { id, tripId } = body;
-  console.log(tripId);
   return axios
     .get(`/api/trip/${id}/${tripId}/new`)
     .then((document) => {
       const trip = document.data.result; //.result //????;
-      console.log(trip);
       return Promise.resolve(trip);
     })
     .catch((error) => {
@@ -17,12 +15,10 @@ const newDay = (body) => {
 
 const getDays = (body) => {
   const { id, tripId } = body;
-  console.log(tripId);
   return axios
     .get(`/api/trip/${id}/${tripId}/`)
     .then((document) => {
       const trip = document.data.result; //.result //????;
-      console.log(trip);
       return Promise.resolve(trip);
     })
     .catch((error) => {
@@ -32,7 +28,6 @@ const getDays = (body) => {
 
 const getDayPlaces = (body) => {
   const { id, tripId, day } = body;
-  console.log(tripId);
   return axios
     .get(`/api/trip/${id}/${tripId}/${day}`)
     .then((document) => {

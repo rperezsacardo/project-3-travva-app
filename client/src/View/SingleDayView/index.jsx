@@ -51,7 +51,7 @@ class SingleDayView extends Component {
     const { id, tripId, day } = this.props.match.params;
     getDayPlaces({ id, tripId, day })
       .then((userPlaces) => {
-        console.log("result", userPlaces);
+        console.log("result", userPlaces.dayPlan);
         this.setState({
           userPlaces: userPlaces.dayPlan
         });
@@ -67,14 +67,19 @@ class SingleDayView extends Component {
     const { id, tripId, day } = this.props.match.params;
     console.log("new place");
     newPlace({ id, tripId, day, placeId })
-      .then((result) => console.log(result))
+      .then((result) => console.log(result)) // how to set a new render ??
       .catch((error) => console.log(error));
+  };
+
+  removePlace = () => {
+    console.log("remove");
   };
 
   render() {
     const allPlaces = this.state.places;
+    const userPlaces = this.state.userPlaces;
     const { id, tripId, day } = this.props.match.params;
-    console.log(this.state.userPlaces);
+    // console.log("all user places", this.state.userPlaces);
 
     return (
       <div>
@@ -108,6 +113,25 @@ class SingleDayView extends Component {
             </Button>
           </Form>
         </Container>
+
+        <div>
+          {userPlaces && (
+            <Container>
+              <Row>
+                <>
+                  {userPlaces.map((place) => {
+                    return (
+                      <Col sm={4} className="mb-5">
+                        <Place {...place} removePlace={this.removePlace}  />
+                      </Col>
+                    );
+                  })}
+                </>
+              </Row>
+            </Container>
+          )}
+        </div>
+
         <div>
           {allPlaces && (
             <Container>
@@ -116,7 +140,7 @@ class SingleDayView extends Component {
                   {allPlaces.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} addPlace={this.addPlace} />
+                        <Place {...place} addPlace={this.addPlace}  />
                       </Col>
                     );
                   })}
