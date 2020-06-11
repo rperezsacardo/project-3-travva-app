@@ -140,14 +140,9 @@ tripRouter.post("/remove-place", (req, res, next) => {
 tripRouter.post("/update-name", (req, res, next) => {
   const { tripId, tripName } = req.body;
 
-  console.log("here", tripId);
-
   Trip.findOneAndUpdate({ _id: tripId }, { name: tripName }, { new: true }) // Find this trip MongoDb
-    .then((result) => {
-      console.log("second result", result);
-    })
+    .then((result) => {})
     .catch((error) => {
-      console.log(error);
       next(error);
     });
 });
