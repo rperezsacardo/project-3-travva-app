@@ -5,7 +5,8 @@ import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
 import { getDayPlaces, newPlace } from "./../../services/day";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Breadcrumb, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class SingleDayView extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class SingleDayView extends Component {
 
   addPlace = (placeId) => {
     const { id, tripId, day } = this.props.match.params;
-    console.log("nem place");
+    console.log("new place");
     newPlace({ id, tripId, day, placeId })
       .then((result) => console.log(result))
       .catch((error) => console.log(error));
@@ -72,27 +73,41 @@ class SingleDayView extends Component {
 
   render() {
     const allPlaces = this.state.places;
+    const { id, tripId, day } = this.props.match.params;
     console.log(this.state.userPlaces);
+
     return (
       <div>
-        <Form onSubmit={this.handleFormSubmission}>
-          <label>Search Form</label>
-          <input
-            name="query"
-            id="search-input"
-            type="text"
-            placeholder="Search for a city..."
-            value={this.state.query} //query passed into search bar
-            onChange={this.handleInputChange}
-            autoComplete="on"
-          />
-          <button>🔎</button>
-        </Form>
-        <div>
-          <h1>
-            <button>Test Places</button>
-          </h1>
-        </div>
+        <Breadcrumb>
+          <Breadcrumb.Item>
+            <Link to="/">Home</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to={`/user/${id}`}>Profile</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to={`/user/${id}/${tripId}`}>Trip</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>{`Day ${day}`}</Breadcrumb.Item>
+        </Breadcrumb>
+        <Container className="mb-4">
+          <Form onSubmit={this.handleFormSubmission}>
+            <Form.Control
+              size="lg"
+              name="query"
+              id="search-input"
+              type="text"
+              placeholder="Enter 'Lisbon', 'Berlin', etc."
+              value={this.state.query}
+              onChange={this.handleInputChange}
+              autoComplete="on"
+            />
+            <br />
+            <Button variant="success" type="submit" size="lg">
+              🔎 Explore Places
+            </Button>
+          </Form>
+        </Container>
         <div>
           {allPlaces && (
             <Container>

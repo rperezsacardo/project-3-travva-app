@@ -106,19 +106,6 @@ export class NavBar extends Component {
               </>
             )}
           </Nav>
-          <Form inline onSubmit={this.handleFormSubmission}>
-            <FormControl
-              name="query"
-              id="search-input"
-              type="text"
-              placeholder="Search a city"
-              className="mr-sm-2"
-              value={this.state.query}
-              onChange={this.handleInputChange}
-              autoComplete="on"
-            />
-            <Button variant="outline-secondary">+</Button>
-          </Form>
         </Navbar.Collapse>
       </Navbar>
     );

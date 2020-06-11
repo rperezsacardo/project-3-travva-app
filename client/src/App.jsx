@@ -3,6 +3,7 @@ import SignUp from "./View/Authentication/SignUp";
 import SignIn from "./View/Authentication/SignIn";
 import EditTripView from "./View/EditTripView";
 import HomeView from "./View/HomeView";
+import ErrorView from "./View/Error";
 import SingleDayView from "./View/SingleDayView";
 import SinglePlaceView from "./View/SinglePlaceView";
 import SingleTripView from "./View/SingleTripView";
@@ -18,7 +19,7 @@ import { loadUserInfo } from "./services/authentication";
 import { Container, Row, Col } from "react-bootstrap";
 //import data from outside location
 
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import "./App.css";
 
@@ -73,6 +74,8 @@ export class App extends Component {
             path="/authentication/sign-in"
             render={(props) => <SignIn {...props} updateUser={this.updateUser} />}
           />
+          <Route path="/error/:code" component={ErrorView} />
+          <Redirect to="/error/404" />
         </Switch>
       </div>
     );

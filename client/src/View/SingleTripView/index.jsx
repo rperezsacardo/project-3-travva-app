@@ -6,7 +6,7 @@ import Day from "./../../Components/Day";
 import { Route, Link, Switch } from "react-router-dom";
 import { getSingleTrip } from "./../../services/trip";
 import { newDay, getDays } from "./../../services/day";
-import { Button } from "react-bootstrap";
+import { Button, Breadcrumb } from "react-bootstrap";
 
 class SingleTripView extends Component {
   constructor() {
@@ -50,6 +50,16 @@ class SingleTripView extends Component {
     const days = this.state.allDays; //this.props.day
     return (
       <div>
+        <Breadcrumb>
+          <Breadcrumb.Item>
+            <Link to="/">Home</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link to={`/user/${this.props.match.params.id}`}>Profile</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>Trip</Breadcrumb.Item>
+        </Breadcrumb>
+
         <div className="profile">
           <h2 className="mt-3 ml-3 mb-3">My Trip</h2>
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.AddDay}>

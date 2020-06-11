@@ -29,7 +29,6 @@ function Place(props) {
         <Button variant="success" onClick={() => props.addPlace(placeId)}>
           ➕ Add to Day
         </Button>
-        <button>teste </button>
       </Card.Body>
     </Card>
   );
