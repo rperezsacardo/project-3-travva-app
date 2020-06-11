@@ -6,7 +6,7 @@ import "./index.css";
 
 function Trip(props) {
   const { name, _id, numOfDays, userId, index } = props;
-  // console.log(`trip id: ${_id}`);
+  const tripId = _id;
   // console.log(`name: ${name}`);
   return (
     <Media className="ml-3 mb-4">
@@ -28,6 +28,9 @@ function Trip(props) {
           <Link className="white" to={`/user/${userId}/${_id}`}>
             Edit Trip
           </Link>
+        </Button>
+        <Button variant="warning" onClick={() => props.deleteTrip(props._id)}>
+          Delete
         </Button>
       </Media.Body>
     </Media>

@@ -8,9 +8,17 @@ const mongoose = require("mongoose");
 const Trip = require("./../models/trip");
 const Place = require("./../models/place");
 
-tripRouter.get("/:id", (req, res, next) => {
-  res.json({ type: "success", data: { title: "Show All trips" } });
-  //find by id >>>
+tripRouter.delete("/delete/", (req, res, next) => {
+  const { tripId } = req.body;
+
+  console.log("Delete trip", tripId);
+
+  Trip.findOneAndDelete(tripId)
+    .then((result) => {
+      res.json({ type: "trip Deleted", data: { title: tripId } });
+      console.log(result);
+    })
+    .catch((error) => next(error));
 });
 
 tripRouter.get("/:id/:tripId/new", (req, res, next) => {
@@ -130,13 +138,6 @@ tripRouter.post("/remove-place", (req, res, next) => {
       console.log(error);
       next(error);
     });
-});
-
-tripRouter.delete("/delte", (req, res, next) => {
-  // show one day from trip
-  console.log("working");
-  const { id, tripId } = req.params;
-  res.redirect(`/user/${id}/${tripId}`);
 });
 
 module.exports = tripRouter;
