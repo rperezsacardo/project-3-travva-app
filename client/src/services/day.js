@@ -47,9 +47,9 @@ const getDayPlaces = (body) => {
 
 const newPlace = (body) => {
   const { id, tripId, day, placeId } = body;
-  console.log(tripId);
+  console.log("service body", body);
   return axios
-    .post(`/api/trip/${id}/${tripId}/${day}`, body)
+    .post(`/api/trip/new-place`, body)
     .then((document) => {
       const day = document.data.result; //.result //????;
       console.log(day);

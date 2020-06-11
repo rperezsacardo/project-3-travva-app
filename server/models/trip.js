@@ -15,10 +15,10 @@ const schema = new mongoose.Schema({
   allDays: [
     {
       dayPlan: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Place" //
-        }
+        // {
+        //   type: mongoose.Schema.Types.ObjectId,
+        //   ref: "Place" //
+        // }
       ]
     }
   ]

@@ -73,30 +73,36 @@ tripRouter.get("/:id/:tripId/:day", (req, res, next) => {
     });
 });
 
-tripRouter.post("/:id/:tripId/:day/", (req, res, next) => {
-  // show one day from trip
-  const { id, day } = req.params;
-  //console.log(typeof tripId);
-  const { placeId, tripId } = req.body;
-  console.log(req.body);
+tripRouter.post("/new-place", (req, res, next) => {
+  const { placeId, tripId, day } = req.body;
+  const dayIndex = Number(day) - 1;
+  console.log("here", req.body);
 
-  res.json({ placeId });
-  // const convertedId = mongoose.Types.ObjectId(placeId);
-
-  // console.log(placeId);
-  // console.log("type of", typeof tripId);
-  // Trip.findById(tripId) // Find this trip MongoDb
-  //   .then((result) => {
-  //     console.log("here", result);
-  //     return Place.findById(placeId);
-  //   })
-  //   .then((place) => {
-  //     console.log("place", place);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     next(error);
-  //   });
+  let trip, place, dayArray;
+  Trip.findOne({ _id: tripId }) // Find this trip MongoDb
+    .then((result) => {
+      trip = result;
+      console.log("second result", result);
+      return Place.findOne({ placeId });
+    })
+    .then((placeResult) => {
+      place = placeResult;
+      dayArray = trip.allDays[dayIndex].dayPlan;
+      dayArray.push(place);
+      const newAllDays = [...trip.allDays];
+      newAllDays[dayIndex].dayPlan = dayArray;
+      console.log("place", place);
+      console.log("dayArray", dayArray);
+      console.log("newAllDays", newAllDays);
+      return Trip.findOneAndUpdate({ _id: tripId }, { allDays: newAllDays }, { new: true });
+    })
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
 });
 
 tripRouter.delete("/:id/:tripId/:day", (req, res, next) => {
