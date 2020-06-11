@@ -8,6 +8,7 @@ function Trip(props) {
   const { name, _id, numOfDays, userId, index } = props;
   const tripId = _id;
   // console.log(`name: ${name}`);
+
   return (
     <Media className="ml-3 mb-4">
       <img
@@ -26,10 +27,10 @@ function Trip(props) {
         </p>
         <Button variant="success">
           <Link className="white" to={`/user/${userId}/${_id}`}>
-            Edit Trip
+            Manage Trip
           </Link>
         </Button>
-        <Button variant="warning" onClick={() => props.deleteTrip(props._id)}>
+        <Button variant="link" onClick={() => props.deleteTrip(props._id)}>
           Delete
         </Button>
       </Media.Body>

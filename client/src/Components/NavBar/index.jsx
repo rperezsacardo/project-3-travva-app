@@ -64,8 +64,6 @@ export class NavBar extends Component {
     return (
       <Navbar className="NavBar" expand="lg" variant="white">
         <Navbar.Brand>
-          {" "}
-          {/*menu items for all users*/}
           <Link to="/">
             <img src="travva-navbar.png" height="29px" />
           </Link>
@@ -78,31 +76,31 @@ export class NavBar extends Component {
                 Home
               </Link>
             </Nav.Link>
-            <Nav.Link>
-              <Link className="white" to="/authentication/sign-in">
-                Sign In
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link className="white" to="/authentication/sign-up">
-                Sign Up
-              </Link>
-            </Nav.Link>
-            {this.props.user && (
+            {(!this.props.user && (
               <>
-                {" "}
-                {/*dropdown for logged-in users only*/}
-                <NavDropdown className="white" title="More" id="basic-nav-dropdown">
-                  <NavDropdown.Item>
-                    <Link to={`/user/${this.props.user._id}`}>My Profile</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/user/:id/:tripId/:day">My Trips</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={this.signOutAndDeleteSession}>
-                    <Link to="/">Sign Out</Link>
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <Nav.Link>
+                  <Link className="white" to="/authentication/sign-in">
+                    Sign In
+                  </Link>
+                </Nav.Link>
+                <Nav.Link>
+                  <Link className="white" to="/authentication/sign-up">
+                    Sign Up
+                  </Link>
+                </Nav.Link>
+              </>
+            )) || (
+              <>
+                <Nav.Link>
+                  <Link className="white" to={`/user/${this.props.user._id}`}>
+                    Profile
+                  </Link>
+                </Nav.Link>
+                <Nav.Link onClick={this.signOutAndDeleteSession}>
+                  <Link className="white" to="/">
+                    Sign Out
+                  </Link>
+                </Nav.Link>
               </>
             )}
           </Nav>

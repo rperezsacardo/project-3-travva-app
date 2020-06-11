@@ -22,10 +22,8 @@ class UserView extends Component {
 
   newTrip = () => {
     const user = this.props.match.params.id;
-    console.log("new trip created");
     createTrip(user)
       .then((result) => {
-        console.log(result);
         this.allTrips();
       })
       .catch((error) => console.log("error", error));
@@ -35,7 +33,6 @@ class UserView extends Component {
     const user = this.props.match.params.id;
     getAllTripsFromUser({ user })
       .then((result) => {
-        console.log(result);
         this.setState({
           trips: [...result]
         });
@@ -48,7 +45,6 @@ class UserView extends Component {
     console.log("parameter", tripId);
     serviceDeleteTrip({ tripId })
       .then((result) => {
-        console.log(result);
         this.allTrips();
       })
       .catch((error) => {
@@ -58,7 +54,6 @@ class UserView extends Component {
   render() {
     let tripId;
     const allTrips = this.state.trips;
-    console.log(this.state);
     return (
       <div>
         <Breadcrumb>
