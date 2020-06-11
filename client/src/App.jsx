@@ -12,14 +12,9 @@ import Navbar from "./Components/NavBar";
 import Place from "./Components/Place";
 import Trip from "./Components/Trip";
 import Day from "./Components/Day";
-
-import { loadUserInfo } from "./services/authentication";
-
-//import containers with underlying styles
 import { Container, Row, Col } from "react-bootstrap";
-//import data from outside location
-
-import { Route, Link, Switch, Redirect } from "react-router-dom";
+import { Route, Link, Switch, Redirect, withRouter } from "react-router-dom";
+import { loadUserInfo } from "./services/authentication";
 
 import "./App.css";
 
@@ -62,8 +57,8 @@ export class App extends Component {
           <Route component={SingleTripView} exact path="/trip/:tripId" />{" "}
           {/* {Show The trip from other user} */}
           <Route component={EditTripView} exact path="/user/:id/:tripId/edit" />
-          <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
           <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
+          <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
           <Route
             exact
             path="/authentication/sign-up"

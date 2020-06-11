@@ -13,3 +13,7 @@
 .white:hover {
   color: white;
 }
+
+ul > li {
+  list-style: none;
+}

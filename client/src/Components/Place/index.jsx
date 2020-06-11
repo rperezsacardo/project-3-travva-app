@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
 import { getAllPlacesFromApi } from "../../services/places";
 import { Card, Button, Badge } from "react-bootstrap";
 let status = true;
@@ -37,28 +38,24 @@ class Place extends Component {
   };
 
   render() {
-    // console.log("status", this.state.bookmarked);
+    console.log("status", this.state.bookmarked);
     const { name, photo, placeId } = this.props;
-
+    //console.log(`props: ${this.props.id}`);
     return (
       <Card className="shadow-sm rounded h-100">
-        <Card.Img
-          variant="top"
-          src={this.state.photoWithKey}
-          // alt={"https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"}
-        />
+        <Card.Img variant="top" src={this.state.photoWithKey} alt={this.props.name} />
         <Card.Body>
           <div className="mb-2">
             <Card.Title className="mb-0">{name}</Card.Title>
             <Card.Text className="text-secondary">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s.
+              has been the industry's standard dummy text ever since....
+              {<Link to={"/"}>Read More</Link>}
             </Card.Text>
             <Badge variant="warning">Rating 4.5</Badge>
           </div>
           {(this.props.addPlace && (
             <>
-              (
               <Button
                 variant="success"
                 onClick={() => {
@@ -68,24 +65,21 @@ class Place extends Component {
               >
                 ➕ Add to Day
               </Button>{" "}
-              )
             </>
           )) || (
             <>
               {" "}
-              (
               {
                 <Button
-                  variant="success"
+                  variant="outline-success"
                   onClick={() => {
                     this.props.removePlace(placeId);
                     this.placeBookmarked();
                   }}
                 >
-                  REMOVE
+                  ➖ Remove
                 </Button>
-              }
-              ){" "}
+              }{" "}
             </>
           )}
         </Card.Body>

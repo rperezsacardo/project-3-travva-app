@@ -6,7 +6,7 @@ import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
 import { getDayPlaces, newPlace, removePlace } from "./../../services/day";
 import { Container, Row, Col, Form, Breadcrumb, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class SingleDayView extends Component {
   constructor(props) {
@@ -157,4 +157,4 @@ class SingleDayView extends Component {
   }
 }
 
-export default SingleDayView;
+export default withRouter(SingleDayView);

@@ -19,7 +19,7 @@ class SignIn extends Component {
     signIn({ email, password })
       .then((user) => {
         this.props.updateUser(user);
-        this.props.history.push("/");
+        this.props.history.push(`/user/${this.props.match.params.id}`);
       })
       .catch((error) => console.log(error));
   };
