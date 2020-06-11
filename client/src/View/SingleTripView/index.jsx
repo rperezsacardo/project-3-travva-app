@@ -23,7 +23,7 @@ class SingleTripView extends Component {
   // };
 
   componentDidMount = () => {
-    this.getAllDaysfromUser();
+    this.getTripInfo();
   };
 
   AddDay = () => {
@@ -37,32 +37,35 @@ class SingleTripView extends Component {
       .catch((error) => console.log(error));
   };
 
-  getAllDaysfromUser = () => {
+  getTripInfo = () => {
     const { id, tripId } = this.props.match.params;
     getDays({ id, tripId })
       .then((result) => {
         this.setState({
           trip: result,
-          allDays: result.allDays
+          allDays: result.allDays,
+          tripName: result.name
         });
       })
       .catch((error) => console.log(error));
   };
 
-  editTripName = () => {
-    console.log(this.state.editName);
+  statusTripName = () => {
     this.setState({
       editName: !this.state.editName
     });
-    console.log(this.state.editName);
   };
 
   handleFormSubmission = (event) => {
     const { id, tripId } = this.props.match.params;
     event.preventDefault();
     const { tripName } = this.state;
+    this.statusTripName();
     serviceUpdateTripName({ tripId, tripName })
-      .then((result) => console.log(result))
+      .then((result) => {
+        console.log(result);
+      })
+
       .catch((error) => console.log(error));
     console.log(`Query: ${tripName}`);
   };
@@ -91,23 +94,45 @@ class SingleTripView extends Component {
         </Breadcrumb>
 
         <div className="profile">
-          <h2 className="mt-3 ml-3 mb-3">My Trip</h2>{" "}
-          <Form onSubmit={this.handleFormSubmission}>
-            <Form.Control
-              size="lg"
-              name="tripName"
-              id="edit-input"
-              type="text"
-              placeholder="Eurotrip"
-              value={this.state.query}
-              onChange={this.handleInputChange}
-              autoComplete="on"
-            />
-            <br />
-            <Button variant="success" type="submit" size="lg" onClick={this.editTripName}>
-              Update
-            </Button>
-          </Form>
+          <h2 className="mt-3 ml-3 mb-3">{this.state.tripName}</h2>{" "}
+          {(this.state.editName && (
+            <>
+              {" "}
+              (
+              {
+                <Form onSubmit={this.handleFormSubmission}>
+                  <Form.Control
+                    size="lg"
+                    name="tripName"
+                    id="edit-input"
+                    type="text"
+                    placeholder="Eurotrip"
+                    value={this.state.query}
+                    onChange={this.handleInputChange}
+                    autoComplete="on"
+                  />
+                  <br />
+                  <Button variant="success" type="submit" size="lg">
+                    Update
+                  </Button>
+                </Form>
+              }
+              ){" "}
+            </>
+          )) || (
+            <>
+              {" "}
+              {
+                <Button
+                  className="mb-4 ml-3 shadow-sm"
+                  variant="light"
+                  onClick={this.statusTripName}
+                >
+                  Change Name
+                </Button>
+              }{" "}
+            </>
+          )}
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.AddDay}>
             Add Day
           </Button>
