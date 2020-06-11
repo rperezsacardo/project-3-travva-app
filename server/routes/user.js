@@ -6,6 +6,7 @@ const routeGuard = require("./../middleware/route-guard");
 const User = require("./../models/user");
 const Trip = require("./../models/trip");
 
+
 userRouter.get("/:id", (req, res, next) => {
   console.log("all trips"); //Show all trips from user
   const id = req.params.id;
@@ -33,7 +34,7 @@ userRouter.post("/:id", (req, res, next) => {
 });
 
 userRouter.get("/:id/:tripId", (req, res, next) => {
-  //Show one trip from user
+  console.log("this");
 
   res.json({ type: "success", data: { title: "One trip" } });
 });
@@ -81,7 +82,7 @@ userRouter.delete("/:id/:tripId/edit", (req, res, next) => {
   const { id, tripId } = req.params;
   res.redirect(`/user/${id}/${tripId}`);
 });
-userRouter.patch("/:id/:trip_id/edit", (req, res, next) => {
+userRouter.post("/:id/:trip_id/edit", (req, res, next) => {
   //edit trip info
 });
 
@@ -91,8 +92,9 @@ userRouter.post("/:id/:tripId/edit/:day", (req, res, next) => {
 
   const { id, tripId, day } = req.params;
 
-  res.redirect(`/user/${id}/${tripId}/edit`);
+  // res.redirect(`/user/${id}/${tripId}/edit`);
 });
+
 //------------------------------------------------------------------
 
 userRouter.get("/:id/:tripId/:day/:place", (req, res, next) => {

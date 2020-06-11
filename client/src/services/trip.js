@@ -5,12 +5,11 @@ const baseApi = axios.create({
 });
 
 const getSingleTrip = (body) => {
-  const { user, tripID } = body;
+  const { id, tripID } = body;
   return baseApi
-    .get(`/user/${user}/${tripID}/`)
-    .then((result) => {
-      console.log("service >>>>", result.data);
-      const trip = result.data;
+    .get(`/user/${id}/${tripID}/`)
+    .then((document) => {
+      const trip = document.data.result //????;
       return Promise.resolve(trip);
     })
     .catch((error) => {
@@ -36,8 +35,9 @@ const getAllTripsFromUser = (body) => {
   const { user } = body;
   return baseApi
     .get(`/user/${user}`)
-    .then((result) => {
-      const trips = result.data;
+    .then((document) => {
+      const trips = document.data.result;
+      console.log("service >>>>");
       return Promise.resolve(trips);
     })
     .catch((error) => {

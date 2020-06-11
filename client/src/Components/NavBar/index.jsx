@@ -49,7 +49,6 @@ export class NavBar extends Component {
     if (!this.props.user)
       loadUserInfo()
         .then((user) => {
-          console.log(user);
           this.updateUser(user);
         })
         .catch((error) => console.log(error));

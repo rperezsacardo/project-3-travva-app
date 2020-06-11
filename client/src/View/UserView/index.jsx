@@ -10,22 +10,12 @@ class UserView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: null
+      trips: []
     };
   }
 
   componentDidMount = () => {
-    const user = this.props.match.params.id;
-    getAllTripsFromUser({ user })
-      .then((result) => {
-        console.log("result >>>>>>>>", result);
-
-        this.setState({
-          trips: result
-        });
-        console.log(typeof allTrips);
-      })
-      .catch((error) => console.log(error));
+    this.allTrips();
   };
 
   newTrip = () => {
@@ -40,22 +30,24 @@ class UserView extends Component {
     const user = this.props.match.params.id;
     getAllTripsFromUser({ user })
       .then((result) => {
-        console.log("result >>>>>>>>", result);
+        console.log(result);
         this.setState({
-          trips: result
+          trips: [...result]
         });
+        console.log(typeof result);
       })
       .catch((error) => console.log(error));
   };
 
   render() {
     const allTrips = this.state.trips;
-    //console.log("state", this.state.trips);
+
     return (
       <div>
         <h2>User View</h2>
         <button onClick={this.newTrip}>New trip</button>
-        {allTrips && (
+
+        {this.state.trips && (
           <>
             {allTrips.map((trip) => {
               return <Trip {...trip} />;

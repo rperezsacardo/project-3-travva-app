@@ -4,8 +4,8 @@ import { Card, Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Trip(props) {
-  const { name, tripId, numOfDays } = props;
-  console.log(`trip id: ${tripId}`);
+  const { name, _id, numOfDays, userId } = props;
+  console.log(`trip id: ${_id}`);
   console.log(`name: ${name}`);
   return (
     <Card className="shadow-sm rounded h-100">
@@ -20,7 +20,7 @@ function Trip(props) {
           <Badge variant="warning">{numOfDays}</Badge>
         </div>
         <Button variant="success">
-          <Link to="{}">Edit Trip</Link>
+          <Link to={`/user/${userId}/${_id}`}>Edit Trip</Link>
         </Button>
       </Card.Body>
     </Card>
