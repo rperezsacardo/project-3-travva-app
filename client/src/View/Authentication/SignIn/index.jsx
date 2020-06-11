@@ -7,6 +7,7 @@ class SignIn extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
       email: "",
       password: ""
     };
@@ -21,8 +22,6 @@ class SignIn extends Component {
         this.props.history.push("/");
       })
       .catch((error) => console.log(error));
-    alert(`Person with the email ${email} and the password ${password} has signed up.`);
-    // do something here, set state?
   };
 
   handleInputChange = (event) => {

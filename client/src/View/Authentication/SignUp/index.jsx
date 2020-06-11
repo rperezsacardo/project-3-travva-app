@@ -7,6 +7,7 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
       email: "",
       password: ""
     };
@@ -36,6 +37,17 @@ class SignUp extends Component {
     return (
       <Container md="auto" className="mt-5">
         <Form fluid className="Form" onSubmit={this.handleFormSubmission}>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              name="name"
+              type="name"
+              placeholder="Enter Username"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            />
+          </Form.Group>
+
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -45,9 +57,6 @@ class SignUp extends Component {
               value={this.state.email}
               onChange={this.handleInputChange}
             />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">

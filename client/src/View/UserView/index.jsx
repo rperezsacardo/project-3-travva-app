@@ -5,6 +5,7 @@ import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllTripsFromUser, createTrip } from "./../../services/trip";
 import { Card, Button, Badge, Container, Row, Col } from "react-bootstrap";
+import "./index.css";
 
 class UserView extends Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class UserView extends Component {
   };
 
   newTrip = () => {
-    // console.log("all", this.props.match.params);
     const user = this.props.match.params.id;
     createTrip(user)
       .then((result) => this.allTrips())
@@ -44,9 +44,12 @@ class UserView extends Component {
 
     return (
       <div>
-        <h2>User View</h2>
-        <button onClick={this.newTrip}>New trip</button>
-
+        <div className="profile">
+          <h2 className="mt-3 ml-3 mb-3">Hello, User.</h2>
+          <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.newTrip}>
+            Create trip
+          </Button>
+        </div>
         {this.state.trips && (
           <>
             {allTrips.map((trip) => {
@@ -60,18 +63,3 @@ class UserView extends Component {
 }
 
 export default UserView;
-
-//<Container>
-//<Row>
-//</Row>
-//</Container>
-//<Col sm={4} className="mb-5">
-//</Col>
-
-// {allTrips && (
-//   <>
-//     {allTrips.map((trip) => {
-//       return <Trip {...trip} />;
-//     })}
-//   </>
-// )}

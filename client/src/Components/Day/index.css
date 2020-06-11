@@ -1,0 +1,12 @@
+.less-width {
+  width: 70%;
+}
+
+.white,
+.white:visited {
+  color: white;
+}
+
+.white:hover {
+  color: white;
+}

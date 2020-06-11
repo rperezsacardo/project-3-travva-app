@@ -1,29 +1,36 @@
 import React from "react";
 import { getAllTripsFromUser } from "../../services/trip";
-import { Card, Button, Badge } from "react-bootstrap";
+import { Card, Button, Badge, Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./index.css";
 
 function Trip(props) {
   const { name, _id, numOfDays, userId } = props;
-  console.log(`trip id: ${_id}`);
-  console.log(`name: ${name}`);
+  //console.log(`trip id: ${_id}`);
+  //console.log(`name: ${name}`);
   return (
-    <Card className="shadow-sm rounded h-100">
-      <Card.Img
-        variant="top"
-        src={"https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"}
+    <Media className="ml-3 mb-4">
+      <img
+        width={64}
+        height={64}
+        className="mr-3"
+        src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+        alt="Generic placeholder"
       />
-      <Card.Body>
-        <div className="mb-2">
-          <Card.Title className="mb-0">{name}</Card.Title>
-          <Card.Text className="text-secondary">Trip Description</Card.Text>
-          <Badge variant="warning">{numOfDays}</Badge>
-        </div>
+      <Media.Body>
+        <h5>{name}</h5>
+        <p className="text-secondary less-width">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+          a galley of type and scrambled it to make a type specimen book.
+        </p>
         <Button variant="success">
-          <Link to={`/user/${userId}/${_id}`}>Edit Trip</Link>
+          <Link className="white" to={`/user/${userId}/${_id}`}>
+            Edit Trip
+          </Link>
         </Button>
-      </Card.Body>
-    </Card>
+      </Media.Body>
+    </Media>
   );
 }
 
