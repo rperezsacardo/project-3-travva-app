@@ -4,8 +4,9 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllTripsFromUser, createTrip } from "./../../services/trip";
-import { Card, Button, Badge, Container, Row, Col } from "react-bootstrap";
+import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 class UserView extends Component {
   constructor(props) {
@@ -44,10 +45,18 @@ class UserView extends Component {
   };
 
   render() {
+    let tripId;
     const allTrips = this.state.trips;
-
+    console.log(this.state);
     return (
       <div>
+        <Breadcrumb>
+          <Breadcrumb.Item>
+            <Link to="/">Home</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active>Profile</Breadcrumb.Item>
+        </Breadcrumb>
+
         <div className="profile">
           <h2 className="mt-3 ml-3 mb-3">Hello, User.</h2>
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.newTrip}>
