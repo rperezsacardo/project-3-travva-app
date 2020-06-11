@@ -19,11 +19,9 @@ class SignUp extends Component {
     signUp({ email, password })
       .then((user) => {
         this.props.updateUser(user);
-        this.props.history.push("/");
+        this.props.history.push(`/user/${this.props.match.params.id}`);
       })
       .catch((error) => console.log(error));
-    alert(`Person with the email ${email} and the password ${password} has signed up.`);
-    // do something here, set state?
   };
 
   handleInputChange = (event) => {

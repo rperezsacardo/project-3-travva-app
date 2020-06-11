@@ -92,7 +92,7 @@ export class NavBar extends Component {
               <>
                 {" "}
                 {/*dropdown for logged-in users only*/}
-                <NavDropdown className="white" title="Account" id="basic-nav-dropdown">
+                <NavDropdown className="white" title="More" id="basic-nav-dropdown">
                   <NavDropdown.Item>
                     <Link to={`/user/${this.props.user._id}`}>My Profile</Link>
                   </NavDropdown.Item>

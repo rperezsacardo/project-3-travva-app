@@ -6,7 +6,7 @@ import Day from "./../../Components/Day";
 import { Route, Link, Switch } from "react-router-dom";
 import { getSingleTrip } from "./../../services/trip";
 import { newDay, getDays } from "./../../services/day";
-import { Button, Breadcrumb } from "react-bootstrap";
+import { Button, Breadcrumb, Media } from "react-bootstrap";
 
 class SingleTripView extends Component {
   constructor() {
@@ -71,21 +71,34 @@ class SingleTripView extends Component {
           <>
             {days.map((day, index) => {
               return (
-                <li>
-                  <Day {...day} day={this.AddDay} index={index} />
-                  <h5>Day {index + 1}</h5>
-                  <Button variant="success">
-                    <Link className="white" to={`/user/${id}/${tripId}/${index + 1}`}>
-                      {" "}
-                      Explore Places
-                    </Link>
-                  </Button>
-                </li>
+                <Media className="ml-3 mb-4">
+                  <img
+                    width={64}
+                    height={64}
+                    className="mr-3"
+                    src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+                    alt="Generic placeholder"
+                  />
+                  <Media.Body>
+                    <Day {...day} day={this.AddDay} index={index} />
+                    <h5>Day {index + 1}</h5>
+                    <p className="text-secondary less-width">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                      when an unknown printer took a galley of type and scrambled it to make a type
+                      specimen book.
+                    </p>
+                    <Button variant="success">
+                      <Link className="white" to={`/user/${id}/${tripId}/${index + 1}`}>
+                        Plan Day
+                      </Link>
+                    </Button>
+                  </Media.Body>
+                </Media>
               );
             })}
-            }{" "}
           </>
-        )) || <> {<button onClick={this.AddDay}>Add your first day </button>}</>}
+        )) || <> </>}
       </div>
     );
   }
