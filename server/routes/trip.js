@@ -35,7 +35,7 @@ tripRouter.get("/:id/:tripId/new", (req, res, next) => {
         //else create
         updateDays = [...newDayToAdd];
       }
-      // console.log("trip founded", updateDays);
+
       const ResultId = result._id;
       return Trip.findOneAndUpdate({ _id: ResultId }, { allDays: updateDays }, { new: true });
     })
@@ -50,7 +50,7 @@ tripRouter.get("/:id/:tripId/new", (req, res, next) => {
 
 tripRouter.get("/:id/:tripId/", (req, res, next) => {
   const { id, tripId } = req.params;
-  //console.log(req.params);
+
   Trip.findById(tripId) // Find this trip MongoDb
     .then((result) => {
       res.json({ result });
@@ -84,13 +84,12 @@ tripRouter.get("/:id/:tripId/:day", (req, res, next) => {
 tripRouter.post("/new-place", (req, res, next) => {
   const { placeId, tripId, day } = req.body;
   const dayIndex = Number(day) - 1;
-  // console.log("here", req.body);
 
   let trip, place, dayArray;
   Trip.findOne({ _id: tripId }) // Find this trip MongoDb
     .then((result) => {
       trip = result;
-      // console.log("second result", result);
+
       return Place.findOne({ placeId });
     })
     .then((placeResult) => {
@@ -99,9 +98,7 @@ tripRouter.post("/new-place", (req, res, next) => {
       dayArray.push(place);
       const newAllDays = [...trip.allDays];
       newAllDays[dayIndex].dayPlan = dayArray;
-      // console.log("place", place);
-      // console.log("dayArray", dayArray);
-      // console.log("newAllDays", newAllDays);
+
       return Trip.findOneAndUpdate({ _id: tripId }, { allDays: newAllDays }, { new: true });
     })
     .then((result) => {
@@ -133,6 +130,21 @@ tripRouter.post("/remove-place", (req, res, next) => {
     .then((result) => {
       console.log(result);
       res.json({ result });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
+});
+
+tripRouter.post("/update-name", (req, res, next) => {
+  const { tripId, tripName } = req.body;
+
+  console.log("here", tripId);
+
+  Trip.findOneAndUpdate({ _id: tripId }, { name: tripName }, { new: true }) // Find this trip MongoDb
+    .then((result) => {
+      console.log("second result", result);
     })
     .catch((error) => {
       console.log(error);

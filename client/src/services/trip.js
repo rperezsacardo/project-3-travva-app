@@ -60,4 +60,18 @@ const serviceDeleteTrip = (body) => {
     });
 };
 
-export { getSingleTrip, createTrip, getAllTripsFromUser, serviceDeleteTrip };
+const serviceUpdateTripName = (body) => {
+  console.log("body", body);
+  return axios
+    .post(`/api/trip/update-name/`, body)
+    .then((result) => {
+      console.log("here", result.data);
+      const trip = result.data;
+      return Promise.resolve(trip);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
+export { getSingleTrip, createTrip, getAllTripsFromUser, serviceDeleteTrip, serviceUpdateTripName };

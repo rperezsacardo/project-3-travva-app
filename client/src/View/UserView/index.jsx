@@ -49,6 +49,7 @@ class UserView extends Component {
     serviceDeleteTrip({ tripId })
       .then((result) => {
         console.log(result);
+        this.allTrips();
       })
       .catch((error) => {
         console.log(error);

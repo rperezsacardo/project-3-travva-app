@@ -20,7 +20,7 @@ class SingleDayView extends Component {
 
   componentDidMount() {
     const { id, tripId, day } = this.props.match.params;
-    console.log(id, tripId, day);
+
     this.updatePlaces();
   }
 
@@ -66,7 +66,7 @@ class SingleDayView extends Component {
     const { id, tripId, day } = this.props.match.params;
     console.log("new place");
     newPlace({ id, tripId, day, placeId })
-      .then((result) => console.log(result)) // how to set a new render ??
+      .then((result) => this.updatePlaces()) // how to set a new render ??
       .catch((error) => console.log(error));
   };
 
@@ -74,7 +74,7 @@ class SingleDayView extends Component {
     console.log("remove", placeId);
     const { id, tripId, day } = this.props.match.params;
     removePlace({ id, tripId, day, placeId })
-      .then((result) => console.log(result)) // how to set a new render ??
+      .then((result) => this.updatePlaces()) // how to set a new render ??
       .catch((error) => console.log(error));
   };
 
