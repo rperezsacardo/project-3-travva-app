@@ -36,7 +36,6 @@ class UserView extends Component {
         this.setState({
           trips: [...result]
         });
-        console.log(this.state.trips.length);
       })
       .catch((error) => console.log(error));
   };
@@ -50,6 +49,7 @@ class UserView extends Component {
         console.log(error);
       });
   };
+
   render() {
     let tripId;
     const allTrips = this.state.trips;

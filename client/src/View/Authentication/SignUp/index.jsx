@@ -19,7 +19,7 @@ class SignUp extends Component {
     signUp({ email, password })
       .then((user) => {
         this.props.updateUser(user);
-        this.props.history.push(`/user/${this.props.match.params.id}`);
+        this.props.history.push(`/user/${user._id}`);
       })
       .catch((error) => console.log(error));
   };

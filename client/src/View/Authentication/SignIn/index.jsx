@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { signUp, signIn } from "./../../../services/authentication";
-//import { authenticationService } from "../../../services/authentication"
+import { signIn } from "./../../../services/authentication";
 import { Form, Button, Container } from "react-bootstrap";
 
 class SignIn extends Component {
@@ -19,7 +18,7 @@ class SignIn extends Component {
     signIn({ email, password })
       .then((user) => {
         this.props.updateUser(user);
-        this.props.history.push(`/user/${this.props.match.params.id}`);
+        this.props.history.push(`/user/${user._id}`);
       })
       .catch((error) => console.log(error));
   };

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SignUp from "./View/Authentication/SignUp";
 import SignIn from "./View/Authentication/SignIn";
-import EditTripView from "./View/EditTripView";
 import HomeView from "./View/HomeView";
 import ErrorView from "./View/Error";
 import SingleDayView from "./View/SingleDayView";
@@ -15,8 +14,6 @@ import Day from "./Components/Day";
 import { Container, Row, Col } from "react-bootstrap";
 import { Route, Link, Switch, Redirect, withRouter } from "react-router-dom";
 import { loadUserInfo } from "./services/authentication";
-
-import "./App.css";
 
 export class App extends Component {
   constructor() {
@@ -55,7 +52,6 @@ export class App extends Component {
           />
           <Route component={SingleTripView} exact path="/user/:id/:tripId" />
           <Route component={SingleTripView} exact path="/trip/:tripId" />{" "}
-          <Route component={EditTripView} exact path="/user/:id/:tripId/edit" />
           <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
           <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
           <Route

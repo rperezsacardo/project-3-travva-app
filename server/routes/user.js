@@ -3,7 +3,6 @@
 const { Router } = require("express");
 const userRouter = new Router();
 const routeGuard = require("./../middleware/route-guard");
-const User = require("./../models/user");
 const Trip = require("./../models/trip");
 
 
@@ -33,49 +32,17 @@ userRouter.post("/:id", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-userRouter.get("/:id/:tripId", (req, res, next) => {
+userRouter.get("/:id/:tripId", (req, res) => {
   console.log("this");
 
   res.json({ type: "success", data: { title: "One trip" } });
 });
 
-userRouter.get("/private", routeGuard, (req, res, next) => {
+userRouter.get("/private", routeGuard, (req, res) => {
   res.json({});
 });
 
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//Edit a Trip
-
-userRouter.get("/:id/:tripId/edit", (req, res, next) => {
-  //get edit trip info
-  res.json({ type: "success", data: { title: "edit trip" } });
-});
-
-userRouter.delete("/:id/:tripId/edit", (req, res, next) => {
-  //delete trip
-
-  const { id, tripId } = req.params;
-  res.redirect(`/user/${id}/${tripId}`);
-});
-userRouter.post("/:id/:trip_id/edit", (req, res, next) => {
-  //edit trip info
-});
-
-userRouter.post("/:id/:tripId/edit/:day", (req, res, next) => {
-  // Slice this day from the array obj, then returns to edit page (mapping again).
-  // day 3 => 2, day 4 => 3, day 5 => 4...
-
-  const { id, tripId, day } = req.params;
-
-  // res.redirect(`/user/${id}/${tripId}/edit`);
-});
-
-//------------------------------------------------------------------
-
-userRouter.get("/:id/:tripId/:day/:place", (req, res, next) => {
+userRouter.get("/:id/:tripId/:day/:place", (req, res) => {
   // Show place from google api
 
   res.json({ type: "success", data: { title: "Show Place from API" } });

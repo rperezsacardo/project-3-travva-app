@@ -22,7 +22,6 @@ const createTrip = (id) => {
   return baseApi
     .post(`/user/${id}`)
     .then((result) => {
-      console.log(result.data);
       const trip = result.data;
       return Promise.resolve(trip);
     })
@@ -37,7 +36,6 @@ const getAllTripsFromUser = (body) => {
     .get(`/user/${user}`)
     .then((document) => {
       const trips = document.data.result;
-      console.log("service >>>>");
       return Promise.resolve(trips);
     })
     .catch((error) => {
@@ -46,12 +44,10 @@ const getAllTripsFromUser = (body) => {
 };
 
 const serviceDeleteTrip = (body) => {
-  console.log("body", body);
   const { tripId } = body;
   return axios
     .delete(`/api/trip/delete/`, body)
     .then((result) => {
-      console.log("here", result.data);
       const trip = result.data;
       return Promise.resolve(trip);
     })

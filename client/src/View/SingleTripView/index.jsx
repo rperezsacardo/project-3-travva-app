@@ -6,7 +6,7 @@ import Day from "./../../Components/Day";
 import { Route, Link, Switch } from "react-router-dom";
 import { getSingleTrip, serviceUpdateTripName } from "./../../services/trip";
 import { newDay, getDays } from "./../../services/day";
-import { Button, Breadcrumb, Media, Form } from "react-bootstrap";
+import { Button, Breadcrumb, Media, Form, Container } from "react-bootstrap";
 
 class SingleTripView extends Component {
   constructor() {
@@ -98,26 +98,26 @@ class SingleTripView extends Component {
           {(this.state.editName && (
             <>
               {" "}
-              (
               {
-                <Form onSubmit={this.handleFormSubmission}>
-                  <Form.Control
-                    size="lg"
-                    name="tripName"
-                    id="edit-input"
-                    type="text"
-                    placeholder="Eurotrip"
-                    value={this.state.query}
-                    onChange={this.handleInputChange}
-                    autoComplete="on"
-                  />
-                  <br />
-                  <Button variant="success" type="submit" size="lg">
-                    Update
-                  </Button>
-                </Form>
-              }
-              ){" "}
+                <Container>
+                  <Form onSubmit={this.handleFormSubmission}>
+                    <Form.Control
+                      size="md"
+                      name="tripName"
+                      id="edit-input"
+                      type="text"
+                      placeholder="Eurotrip, etc."
+                      value={this.state.query}
+                      onChange={this.handleInputChange}
+                      autoComplete="on"
+                    />
+                    <br />
+                    <Button className="mb-3" variant="success" type="submit" size="md">
+                      Update
+                    </Button>
+                  </Form>
+                </Container>
+              }{" "}
             </>
           )) || (
             <>
