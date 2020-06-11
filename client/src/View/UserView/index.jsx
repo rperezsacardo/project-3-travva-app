@@ -58,7 +58,7 @@ class UserView extends Component {
         </Breadcrumb>
 
         <div className="profile">
-          <h2 className="mt-3 ml-3 mb-3">Hello, User.</h2>
+          <h2 className="mt-3 ml-3 mb-3">Howdy, Alex!</h2>
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.newTrip}>
             Create trip
           </Button>
