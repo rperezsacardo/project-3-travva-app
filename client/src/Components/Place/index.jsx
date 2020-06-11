@@ -4,6 +4,7 @@ import { Card, Button, Badge } from "react-bootstrap";
 
 function Place(props) {
   const { name, photo, placeId } = props;
+  console.log(props);
   const photoWithKey =
     photo === undefined
       ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
@@ -25,7 +26,10 @@ function Place(props) {
           </Card.Text>
           <Badge variant="warning">Rating 4.5</Badge>
         </div>
-        <Button variant="success">➕ Add to Day</Button>
+        <Button variant="success" onClick={() => props.addPlace(placeId)}>
+          ➕ Add to Day
+        </Button>
+        <button>teste </button>
       </Card.Body>
     </Card>
   );

@@ -9,7 +9,7 @@ const getSingleTrip = (body) => {
   return baseApi
     .get(`/user/${id}/${tripID}/`)
     .then((document) => {
-      const trip = document.data.result //????;
+      const trip = document.data.result; //????;
       return Promise.resolve(trip);
     })
     .catch((error) => {

@@ -4,6 +4,7 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
+import { getDayPlaces, newPlace } from "./../../services/day";
 import { Container, Row, Col, Form } from "react-bootstrap";
 
 class SingleDayView extends Component {
@@ -11,14 +12,16 @@ class SingleDayView extends Component {
     super(props);
     this.state = {
       query: "",
-      places: null
+      places: null,
+      userPlaces: null
     };
   }
 
-  /*componentDidMount() {
-    ifthis.setState places)
-    places: places;
-  }*/
+  componentDidMount() {
+    const { id, tripId, day } = this.props.match.params;
+    console.log(id, tripId, day);
+    this.updatePlaces();
+  }
 
   handleFormSubmission = (event) => {
     event.preventDefault();
@@ -43,12 +46,33 @@ class SingleDayView extends Component {
     });
   };
 
+  updatePlaces = () => {
+    const { id, tripId, day } = this.props.match.params;
+    getDayPlaces({ id, tripId, day })
+      .then((userPlaces) => {
+        console.log("result", userPlaces);
+        this.setState({
+          userPlaces: userPlaces.dayPlan
+        });
+      })
+      .catch((error) => console.log("error", error));
+  };
+
   showPlaces = () => {
     const allPlaces = this.state.places;
   };
 
+  addPlace = (placeId) => {
+    const { id, tripId, day } = this.props.match.params;
+    console.log("nem place");
+    newPlace({ id, tripId, day, placeId })
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
   render() {
     const allPlaces = this.state.places;
+    console.log(this.state.userPlaces);
     return (
       <div>
         <Form onSubmit={this.handleFormSubmission}>
@@ -64,7 +88,11 @@ class SingleDayView extends Component {
           />
           <button>🔎</button>
         </Form>
-
+        <div>
+          <h1>
+            <button>Test Places</button>
+          </h1>
+        </div>
         <div>
           {allPlaces && (
             <Container>
@@ -73,7 +101,7 @@ class SingleDayView extends Component {
                   {allPlaces.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} />
+                        <Place {...place} addPlace={this.addPlace} />
                       </Col>
                     );
                   })}

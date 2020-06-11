@@ -44,28 +44,6 @@ userRouter.get("/private", routeGuard, (req, res, next) => {
 });
 
 //------------------------------------------------------------------
-//View / Edit day
-
-userRouter.get("/:id/:tripId/:day", (req, res, next) => {
-  // show one day from trip
-  const { id, tripId, day } = req.params;
-  console.log(id, tripId, day);
-  res.json({ type: "success", data: { title: "Day n" } });
-});
-userRouter.post("/:id/:tripId/:day", (req, res, next) => {
-  // show one day from trip
-  const { id, tripId, day } = req.params;
-
-  console.log(id, tripId, day);
-
-  res.redirect(`/user/${id}/${tripId}/${day}`);
-});
-
-userRouter.delete("/:id/:tripId/:day", (req, res, next) => {
-  // show one day from trip
-  const { id, tripId } = req.params;
-  res.redirect(`/user/${id}/${tripId}`);
-});
 
 //------------------------------------------------------------------
 

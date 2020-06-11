@@ -4,7 +4,7 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllTripsFromUser, createTrip } from "./../../services/trip";
-import { Card, Button, Badge, Container, Row, Col } from "react-bootstrap";
+import { Card, Button, Badge, Container, Row, Col, CardColumns } from "react-bootstrap";
 
 class UserView extends Component {
   constructor(props) {
@@ -21,8 +21,12 @@ class UserView extends Component {
   newTrip = () => {
     // console.log("all", this.props.match.params);
     const user = this.props.match.params.id;
+    console.log("new trip created");
     createTrip(user)
-      .then((result) => this.allTrips())
+      .then((result) => {
+        console.log(result);
+        this.allTrips();
+      })
       .catch((error) => console.log("error", error));
   };
 
@@ -34,7 +38,7 @@ class UserView extends Component {
         this.setState({
           trips: [...result]
         });
-        console.log(typeof result);
+        console.log(this.state.trips.length);
       })
       .catch((error) => console.log(error));
   };
@@ -49,8 +53,8 @@ class UserView extends Component {
 
         {this.state.trips && (
           <>
-            {allTrips.map((trip) => {
-              return <Trip {...trip} />;
+            {allTrips.map((trip, index) => {
+              return <Trip {...trip} index={index} />;
             })}
           </>
         )}

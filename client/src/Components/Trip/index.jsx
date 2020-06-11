@@ -4,9 +4,9 @@ import { Card, Button, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Trip(props) {
-  const { name, _id, numOfDays, userId } = props;
-  console.log(`trip id: ${_id}`);
-  console.log(`name: ${name}`);
+  const { name, _id, numOfDays, userId, index } = props;
+  // console.log(`trip id: ${_id}`);
+  // console.log(`name: ${name}`);
   return (
     <Card className="shadow-sm rounded h-100">
       <Card.Img
@@ -15,7 +15,9 @@ function Trip(props) {
       />
       <Card.Body>
         <div className="mb-2">
-          <Card.Title className="mb-0">{name}</Card.Title>
+          <Card.Title className="mb-0">
+            {name} {index + 1}
+          </Card.Title>
           <Card.Text className="text-secondary">Trip Description</Card.Text>
           <Badge variant="warning">{numOfDays}</Badge>
         </div>
