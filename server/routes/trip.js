@@ -76,13 +76,13 @@ tripRouter.get("/:id/:tripId/:day", (req, res, next) => {
 tripRouter.post("/new-place", (req, res, next) => {
   const { placeId, tripId, day } = req.body;
   const dayIndex = Number(day) - 1;
-  console.log("here", req.body);
+  // console.log("here", req.body);
 
   let trip, place, dayArray;
   Trip.findOne({ _id: tripId }) // Find this trip MongoDb
     .then((result) => {
       trip = result;
-      console.log("second result", result);
+      // console.log("second result", result);
       return Place.findOne({ placeId });
     })
     .then((placeResult) => {
@@ -91,13 +91,14 @@ tripRouter.post("/new-place", (req, res, next) => {
       dayArray.push(place);
       const newAllDays = [...trip.allDays];
       newAllDays[dayIndex].dayPlan = dayArray;
-      console.log("place", place);
-      console.log("dayArray", dayArray);
-      console.log("newAllDays", newAllDays);
+      // console.log("place", place);
+      // console.log("dayArray", dayArray);
+      // console.log("newAllDays", newAllDays);
       return Trip.findOneAndUpdate({ _id: tripId }, { allDays: newAllDays }, { new: true });
     })
     .then((result) => {
       console.log(result);
+      res.json({ result });
     })
     .catch((error) => {
       console.log(error);
