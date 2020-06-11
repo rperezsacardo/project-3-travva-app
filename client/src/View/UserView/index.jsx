@@ -3,7 +3,7 @@ import NavBar from "./../../Components/NavBar";
 import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
-import { getAllTripsFromUser, createTrip } from "./../../services/trip";
+import { getAllTripsFromUser, createTrip, serviceDeleteTrip } from "./../../services/trip";
 import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import "./index.css";
 import { Link } from "react-router-dom";
@@ -44,6 +44,16 @@ class UserView extends Component {
       .catch((error) => console.log(error));
   };
 
+  deleteTrip = (tripId) => {
+    console.log("parameter", tripId);
+    serviceDeleteTrip({ tripId })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   render() {
     let tripId;
     const allTrips = this.state.trips;
@@ -66,7 +76,7 @@ class UserView extends Component {
         {this.state.trips && (
           <>
             {allTrips.map((trip, index) => {
-              return <Trip {...trip} index={index} />;
+              return <Trip {...trip} index={index} deleteTrip={this.deleteTrip} />;
             })}
           </>
         )}

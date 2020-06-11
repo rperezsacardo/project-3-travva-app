@@ -45,12 +45,13 @@ const getAllTripsFromUser = (body) => {
     });
 };
 
-const deleteTrip = (body) => {
-  // const { id } = body;
-  return baseApi
-    .delete(`/trip/delete`, body)
+const serviceDeleteTrip = (body) => {
+  console.log("body", body);
+  const { tripId } = body;
+  return axios
+    .delete(`/api/trip/delete/`, body)
     .then((result) => {
-      console.log(result.data);
+      console.log("here", result.data);
       const trip = result.data;
       return Promise.resolve(trip);
     })
@@ -59,4 +60,4 @@ const deleteTrip = (body) => {
     });
 };
 
-export { getSingleTrip, createTrip, getAllTripsFromUser, deleteTrip };
+export { getSingleTrip, createTrip, getAllTripsFromUser, serviceDeleteTrip };
