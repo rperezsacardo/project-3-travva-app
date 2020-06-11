@@ -15,7 +15,6 @@ class Place extends Component {
 
   loadInfo = () => {
     const { name, photo, placeId, bookmarked } = this.props;
-
     const photoWithKey =
       photo === undefined
         ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
@@ -38,9 +37,9 @@ class Place extends Component {
   };
 
   render() {
-    console.log("status", this.state.bookmarked);
+    // console.log("status", this.state.bookmarked);
     const { name, photo, placeId } = this.props;
-    console.log(this.props);
+
     return (
       <Card className="shadow-sm rounded h-100">
         <Card.Img
@@ -79,7 +78,7 @@ class Place extends Component {
                 <Button
                   variant="success"
                   onClick={() => {
-                    this.props.removePlace();
+                    this.props.removePlace(placeId);
                     this.placeBookmarked();
                   }}
                 >

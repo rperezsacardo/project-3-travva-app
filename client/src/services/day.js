@@ -55,4 +55,19 @@ const newPlace = (body) => {
     });
 };
 
-export { newDay, getDays, getDayPlaces, newPlace };
+const removePlace = (body) => {
+  const { id, tripId, day, placeId } = body;
+  console.log("service body", body);
+  return axios
+    .post(`/api/trip/remove-place`, body)
+    .then((document) => {
+      const day = document.data.result;
+      console.log(day);
+      return Promise.resolve(day);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
+export { newDay, getDays, getDayPlaces, newPlace, removePlace };

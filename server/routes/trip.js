@@ -106,7 +106,33 @@ tripRouter.post("/new-place", (req, res, next) => {
     });
 });
 
-tripRouter.delete("/:id/:tripId/:day", (req, res, next) => {
+tripRouter.post("/remove-place", (req, res, next) => {
+  const { placeId, tripId, day } = req.body;
+  const dayIndex = Number(day) - 1;
+  // console.log("here", req.body);
+
+  let trip, place, dayArray;
+  Trip.findOne({ _id: tripId }) // Find this trip MongoDb
+    .then((result) => {
+      trip = result;
+      console.log("second result", result);
+      dayArray = trip.allDays[dayIndex].dayPlan;
+      const newAllDays = [...trip.allDays];
+      const updateDayArray = dayArray.filter((item) => !(item.placeId === placeId));
+      newAllDays[dayIndex].dayPlan = updateDayArray;
+      return Trip.findOneAndUpdate({ _id: tripId }, { allDays: newAllDays }, { new: true });
+    })
+    .then((result) => {
+      console.log(result);
+      res.json({ result });
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
+});
+
+tripRouter.delete("/delte", (req, res, next) => {
   // show one day from trip
   console.log("working");
   const { id, tripId } = req.params;

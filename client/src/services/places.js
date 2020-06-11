@@ -5,7 +5,7 @@ const basePlace = axios.create({
 });
 
 const getAllPlacesFromApi = (term) => {
-  //console.log(`term: ${term}`); error here <<
+
   return basePlace
     .get(`/search?city=${term}`)
     .then((result) => {

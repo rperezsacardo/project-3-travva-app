@@ -4,7 +4,7 @@ import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
 import { getAllPlacesFromApi } from "../../services/places";
-import { getDayPlaces, newPlace } from "./../../services/day";
+import { getDayPlaces, newPlace, removePlace } from "./../../services/day";
 import { Container, Row, Col, Form, Breadcrumb, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -51,7 +51,6 @@ class SingleDayView extends Component {
     const { id, tripId, day } = this.props.match.params;
     getDayPlaces({ id, tripId, day })
       .then((userPlaces) => {
-        console.log("result", userPlaces.dayPlan);
         this.setState({
           userPlaces: userPlaces.dayPlan
         });
@@ -71,8 +70,12 @@ class SingleDayView extends Component {
       .catch((error) => console.log(error));
   };
 
-  removePlace = () => {
-    console.log("remove");
+  removePlace = (placeId) => {
+    console.log("remove", placeId);
+    const { id, tripId, day } = this.props.match.params;
+    removePlace({ id, tripId, day, placeId })
+      .then((result) => console.log(result)) // how to set a new render ??
+      .catch((error) => console.log(error));
   };
 
   render() {
@@ -122,7 +125,7 @@ class SingleDayView extends Component {
                   {userPlaces.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} removePlace={this.removePlace}  />
+                        <Place {...place} removePlace={this.removePlace} />
                       </Col>
                     );
                   })}
@@ -140,7 +143,7 @@ class SingleDayView extends Component {
                   {allPlaces.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} addPlace={this.addPlace}  />
+                        <Place {...place} addPlace={this.addPlace} />
                       </Col>
                     );
                   })}

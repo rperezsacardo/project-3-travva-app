@@ -45,4 +45,18 @@ const getAllTripsFromUser = (body) => {
     });
 };
 
-export { getSingleTrip, createTrip, getAllTripsFromUser };
+const deleteTrip = (body) => {
+  // const { id } = body;
+  return baseApi
+    .delete(`/trip/delete`, body)
+    .then((result) => {
+      console.log(result.data);
+      const trip = result.data;
+      return Promise.resolve(trip);
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+};
+
+export { getSingleTrip, createTrip, getAllTripsFromUser, deleteTrip };
