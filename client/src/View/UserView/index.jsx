@@ -3,6 +3,7 @@ import NavBar from "./../../Components/NavBar";
 import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
+
 import { getAllTripsFromUser, createTrip, serviceDeleteTrip } from "./../../services/trip";
 import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import "./index.css";
@@ -12,9 +13,18 @@ class UserView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: []
+      trips: [],
+      alert: null
     };
   }
+
+  // componentDidUpdate = (prevProps, prevState, snapshot) => {
+  //   console.log("will");
+  //   if (prevState.trips !== prevProps.trips) {
+  //     console.log("if");
+  //     this.allTrips();
+  //   }
+  // };
 
   componentDidMount = () => {
     this.allTrips();
@@ -41,7 +51,8 @@ class UserView extends Component {
   };
 
   deleteTrip = (tripId) => {
-    serviceDeleteTrip({ tripId })
+    console.log(tripId);
+    serviceDeleteTrip(tripId)
       .then((result) => {
         this.allTrips();
       })
@@ -52,7 +63,9 @@ class UserView extends Component {
 
   render() {
     let tripId;
+    console.log(this.props.user);
     const allTrips = this.state.trips;
+
     return (
       <div>
         <Breadcrumb>
@@ -63,7 +76,9 @@ class UserView extends Component {
         </Breadcrumb>
 
         <div className="profile">
-          <h2 className="mt-3 ml-3 mb-3">Howdy, Alex!</h2>
+          {(this.props.user && (
+            <h2 className="mt-3 ml-3 mb-3">Howdy, {this.props.user.name}!</h2>
+          )) || <h2 className="mt-3 ml-3 mb-3">Howdy, travver!</h2>}
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.newTrip}>
             Create trip
           </Button>

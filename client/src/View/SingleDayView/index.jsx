@@ -114,6 +114,9 @@ class SingleDayView extends Component {
         <div>
           {userPlaces && (
             <Container>
+              {userPlaces.length > 0 && <h2>Your saved places:</h2>}
+              <br />
+              <br />
               <Row>
                 <>
                   {userPlaces.map((place) => {
@@ -136,6 +139,9 @@ class SingleDayView extends Component {
         <div>
           {this.state.places && (
             <Container>
+              <h2 className="mb-2">Things to do in {this.state.query}:</h2>
+              <br />
+              <br />
               <Row>
                 <>
                   {this.state.places.map((place) => {

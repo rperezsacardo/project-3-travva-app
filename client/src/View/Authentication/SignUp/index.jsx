@@ -15,8 +15,8 @@ class SignUp extends Component {
 
   handleFormSubmission = (event) => {
     event.preventDefault();
-    const { email, password } = this.state;
-    signUp({ email, password })
+    const { email, password, name } = this.state;
+    signUp({ email, password, name })
       .then((user) => {
         this.props.updateUser(user);
         this.props.history.push(`/user/${user._id}`);
