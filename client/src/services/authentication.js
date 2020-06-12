@@ -5,7 +5,6 @@ const baseAuthentication = axios.create({
 });
 
 const signUp = (body) => {
-  console.log(body);
   return baseAuthentication
     .post("/sign-up", body)
     .then((response) => {
@@ -19,7 +18,6 @@ const signUp = (body) => {
 };
 
 const signIn = (body) => {
-  console.log(body);
   return baseAuthentication
     .post("/sign-in", body)
     .then((response) => {

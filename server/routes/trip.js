@@ -7,7 +7,7 @@ const routeGuard = require("./../middleware/route-guard");
 const Trip = require("./../models/trip");
 const Place = require("./../models/place");
 
-tripRouter.delete("/delete/", (req, res, next) => {
+tripRouter.delete("/delete/", routeGuard, (req, res, next) => {
   const { tripId } = req.body;
 
   Trip.findOneAndDelete(tripId)
@@ -17,7 +17,7 @@ tripRouter.delete("/delete/", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-tripRouter.get("/:id/:tripId/new", (req, res, next) => {
+tripRouter.get("/:id/:tripId/new", routeGuard, (req, res, next) => {
   const { tripId } = req.params;
   Trip.findById(tripId) // Find this trip MongoDb
     .then((result) => {
@@ -42,7 +42,7 @@ tripRouter.get("/:id/:tripId/new", (req, res, next) => {
     });
 });
 
-tripRouter.get("/:id/:tripId/", (req, res, next) => {
+tripRouter.get("/:id/:tripId/", routeGuard, (req, res, next) => {
   const { tripId } = req.params;
 
   Trip.findById(tripId) // Find this trip MongoDb
@@ -60,7 +60,7 @@ tripRouter.get("/private", routeGuard, (req, res) => {
 
 //View / Edit day
 
-tripRouter.get("/:id/:tripId/:day", (req, res, next) => {
+tripRouter.get("/:id/:tripId/:day", routeGuard, (req, res, next) => {
   // show one day from trip
   const { tripId } = req.params;
 
@@ -73,7 +73,7 @@ tripRouter.get("/:id/:tripId/:day", (req, res, next) => {
     });
 });
 
-tripRouter.post("/new-place", (req, res, next) => {
+tripRouter.post("/new-place", routeGuard, (req, res, next) => {
   const { placeId, tripId, day } = req.body;
   const dayIndex = Number(day) - 1;
 
@@ -101,7 +101,7 @@ tripRouter.post("/new-place", (req, res, next) => {
     });
 });
 
-tripRouter.post("/remove-place", (req, res, next) => {
+tripRouter.post("/remove-place", routeGuard, (req, res, next) => {
   const { placeId, tripId, day } = req.body;
   const dayIndex = Number(day) - 1;
 
@@ -111,7 +111,10 @@ tripRouter.post("/remove-place", (req, res, next) => {
       trip = result;
       dayArray = trip.allDays[dayIndex].dayPlan;
       const newAllDays = [...trip.allDays];
-      const updateDayArray = dayArray.filter((item) => !(item.placeId === placeId));
+      const updateDayArray = dayArray.filter((item) => {
+        // console.log(item);
+        return !(item.placeId === placeId);
+      });
       newAllDays[dayIndex].dayPlan = updateDayArray;
       return Trip.findOneAndUpdate({ _id: tripId }, { allDays: newAllDays }, { new: true });
     })
@@ -123,7 +126,7 @@ tripRouter.post("/remove-place", (req, res, next) => {
     });
 });
 
-tripRouter.post("/update-name", (req, res, next) => {
+tripRouter.post("/update-name", routeGuard, (req, res, next) => {
   const { tripId, tripName } = req.body;
 
   Trip.findOneAndUpdate({ _id: tripId }, { name: tripName }, { new: true }) // Find this trip MongoDb

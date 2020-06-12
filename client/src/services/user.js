@@ -7,8 +7,7 @@ const baseUser = axios.create({
 const getUser = () => {
   return baseUser
     .get("/:id")
-    .then((result) => {
-      console.log(result);
+    .then((result) => {     
       const user = result.data;
       return Promise.resolve(user);
     })
@@ -21,8 +20,7 @@ const getUser = () => {
 const getTrips = () => {
   return baseUser
     .get("/:id/:trips")
-    .then((result) => {
-      console.log(result);
+    .then((result) => {     
       const trips = result.data;
       return Promise.resolve(trips);
     })

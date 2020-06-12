@@ -7,7 +7,6 @@ import "./index.css";
 function Trip(props) {
   const { name, _id, numOfDays, userId, index } = props;
   const tripId = _id;
-  // console.log(`name: ${name}`);
 
   return (
     <Media className="ml-3 mb-4">
@@ -30,7 +29,13 @@ function Trip(props) {
             Manage Trip
           </Link>
         </Button>
-        <Button variant="link" onClick={() => props.deleteTrip(props._id)}>
+        <Button
+          variant="link"
+          onClick={() =>
+            window.confirm(`Do you Really Want delete this Trip: ${name} ?`) &&
+            props.deleteTrip(props._id)
+          }
+        >
           Delete
         </Button>
       </Media.Body>

@@ -8,7 +8,6 @@ import "./NavBar.css";
 export class NavBar extends Component {
   constructor(props) {
     super(props);
-    //console.log("Constructor method ran");
     this.state = {
       query: "",
       user: null
@@ -18,7 +17,7 @@ export class NavBar extends Component {
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { query } = this.state;
-    console.log(`Query: ${query}`);
+
     getAllPlacesFromApi(query)
       .then((result) => {
         //console.log(result);

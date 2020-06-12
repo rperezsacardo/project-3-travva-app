@@ -19,21 +19,17 @@ class SingleDayView extends Component {
   }
 
   componentDidMount() {
-    const { id, tripId, day } = this.props.match.params;
-
     this.updatePlaces();
   }
 
   handleFormSubmission = (event) => {
     event.preventDefault();
     const { query } = this.state;
-    // console.log(`Query: ${query}`);
     getAllPlacesFromApi(query)
       .then((result) => {
-        console.log(result);
         const newPlaces = result.places;
         this.setState({
-          places: [...newPlaces]
+          places: newPlaces
         });
       })
       .catch((error) => console.log(error));
@@ -64,17 +60,15 @@ class SingleDayView extends Component {
 
   addPlace = (placeId) => {
     const { id, tripId, day } = this.props.match.params;
-    console.log("new place");
     newPlace({ id, tripId, day, placeId })
-      .then((result) => this.updatePlaces()) // how to set a new render ??
+      .then((result) => this.updatePlaces())
       .catch((error) => console.log(error));
   };
 
   removePlace = (placeId) => {
-    console.log("remove", placeId);
     const { id, tripId, day } = this.props.match.params;
     removePlace({ id, tripId, day, placeId })
-      .then((result) => this.updatePlaces()) // how to set a new render ??
+      .then((result) => this.updatePlaces())
       .catch((error) => console.log(error));
   };
 
@@ -82,7 +76,7 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     const userPlaces = this.state.userPlaces;
     const { id, tripId, day } = this.props.match.params;
-    // console.log("all user places", this.state.userPlaces);
+    console.log(userPlaces);
 
     return (
       <div>
@@ -125,7 +119,11 @@ class SingleDayView extends Component {
                   {userPlaces.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} removePlace={this.removePlace} />
+                        <Place
+                          {...place}
+                          {...this.props.match.params}
+                          removePlace={this.removePlace}
+                        />
                       </Col>
                     );
                   })}
@@ -136,14 +134,14 @@ class SingleDayView extends Component {
         </div>
 
         <div>
-          {allPlaces && (
+          {this.state.places && (
             <Container>
               <Row>
                 <>
-                  {allPlaces.map((place) => {
+                  {this.state.places.map((place) => {
                     return (
                       <Col sm={4} className="mb-5">
-                        <Place {...place} addPlace={this.addPlace} />
+                        <Place {...place} {...this.props.match.params} addPlace={this.addPlace} />
                       </Col>
                     );
                   })}
@@ -157,4 +155,4 @@ class SingleDayView extends Component {
   }
 }
 
-export default withRouter(SingleDayView);
+export default SingleDayView;

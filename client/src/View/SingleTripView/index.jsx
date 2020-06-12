@@ -18,9 +18,6 @@ class SingleTripView extends Component {
       tripName: ""
     };
   }
-  // componentWillMount = () => {
-  //   this.getAllDaysfromUser();
-  // };
 
   componentDidMount = () => {
     this.getTripInfo();
@@ -56,18 +53,20 @@ class SingleTripView extends Component {
     });
   };
 
+  cancelNameUpdate = () => {
+    this.statusTripName();
+    this.getTripInfo();
+  };
+
   handleFormSubmission = (event) => {
     const { id, tripId } = this.props.match.params;
     event.preventDefault();
     const { tripName } = this.state;
     this.statusTripName();
     serviceUpdateTripName({ tripId, tripName })
-      .then((result) => {
-        console.log(result);
-      })
+      .then((result) => {})
 
       .catch((error) => console.log(error));
-    console.log(`Query: ${tripName}`);
   };
 
   handleInputChange = (event) => {
@@ -97,40 +96,33 @@ class SingleTripView extends Component {
           <h2 className="mt-3 ml-3 mb-3">{this.state.tripName}</h2>{" "}
           {(this.state.editName && (
             <>
-              {" "}
-              {
-                <Container>
-                  <Form onSubmit={this.handleFormSubmission}>
-                    <Form.Control
-                      size="md"
-                      name="tripName"
-                      id="edit-input"
-                      type="text"
-                      placeholder="Eurotrip, etc."
-                      value={this.state.query}
-                      onChange={this.handleInputChange}
-                      autoComplete="on"
-                    />
-                    <br />
-                    <Button className="mb-3" variant="success" type="submit" size="md">
-                      Update
-                    </Button>
-                  </Form>
-                </Container>
-              }{" "}
+              <Container>
+                <Form onSubmit={this.handleFormSubmission}>
+                  <Form.Control
+                    size="md"
+                    name="tripName"
+                    id="edit-input"
+                    type="text"
+                    placeholder="Eurotrip, etc."
+                    value={this.state.tripName}
+                    onChange={this.handleInputChange}
+                    autoComplete="on"
+                  />
+                  <br />
+                  <Button className="mb-3" variant="success" type="submit" size="md">
+                    Update
+                  </Button>
+                </Form>
+              </Container>
+              <Button className="mb-3" variant="warning" onClick={this.cancelNameUpdate} size="md">
+                Cancel
+              </Button>
             </>
           )) || (
             <>
-              {" "}
-              {
-                <Button
-                  className="mb-4 ml-3 shadow-sm"
-                  variant="light"
-                  onClick={this.statusTripName}
-                >
-                  Change Name
-                </Button>
-              }{" "}
+              <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.statusTripName}>
+                Change Name
+              </Button>
             </>
           )}
           <Button className="mb-4 ml-3 shadow-sm" variant="light" onClick={this.AddDay}>

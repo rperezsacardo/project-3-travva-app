@@ -53,7 +53,7 @@ export class App extends Component {
           <Route component={SingleTripView} exact path="/user/:id/:tripId" />
           <Route component={SingleTripView} exact path="/trip/:tripId" />{" "}
           <Route component={SingleDayView} exact path="/user/:id/:tripId/:day" />
-          <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:place" />
+          <Route component={SinglePlaceView} exact path="/user/:id/:tripId/:day/:placeId" />
           <Route
             exact
             path="/authentication/sign-up"
