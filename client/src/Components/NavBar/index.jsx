@@ -65,7 +65,10 @@ export class NavBar extends Component {
       <Navbar className="NavBar" expand="lg" variant="white">
         <Navbar.Brand>
           <Link to="/">
-            <img src="travva-navbar.png" height="29px" />
+            <img
+              src="https://res.cloudinary.com/dzf57hnmi/image/upload/v1591897225/Travva/travva-navbar_rthdbw.png"
+              height="29px"
+            />
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
