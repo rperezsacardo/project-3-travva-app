@@ -52,7 +52,7 @@ class Trip extends Component {
               confirmBtnBsStyle="sucess"
               title={("Are you sure?", name)}
               onConfirm={() => {
-                this.props.deleteTrip(this.props._id);
+                this.props.deleteTrip(_id);
                 this.hideAlert();
               }}
               onCancel={this.hideAlert}

@@ -52,7 +52,7 @@ class UserView extends Component {
 
   deleteTrip = (tripId) => {
     console.log(tripId);
-    serviceDeleteTrip({ tripId })
+    serviceDeleteTrip(tripId)
       .then((result) => {
         this.allTrips();
       })

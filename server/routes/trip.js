@@ -7,10 +7,11 @@ const routeGuard = require("./../middleware/route-guard");
 const Trip = require("./../models/trip");
 const Place = require("./../models/place");
 
-tripRouter.delete("/delete/", routeGuard, (req, res, next) => {
+tripRouter.post("/delete/", routeGuard, (req, res, next) => {
   const { tripId } = req.body;
+  console.log(req.body);
 
-  Trip.findOneAndDelete(tripId)
+  Trip.findByIdAndDelete(tripId)
     .then((result) => {
       res.json({ type: "trip Deleted", data: { title: tripId } });
     })

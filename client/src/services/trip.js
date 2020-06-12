@@ -43,10 +43,10 @@ const getAllTripsFromUser = (body) => {
     });
 };
 
-const serviceDeleteTrip = (body) => {
-  const { tripId } = body;
+const serviceDeleteTrip = (tripId) => {
+  console.log(tripId);
   return axios
-    .delete(`/api/trip/delete/`, body)
+    .post(`/api/trip/delete/`, { tripId })
     .then((result) => {
       const trip = result.data;
       return Promise.resolve(trip);
