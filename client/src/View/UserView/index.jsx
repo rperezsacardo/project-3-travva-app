@@ -3,6 +3,7 @@ import NavBar from "./../../Components/NavBar";
 import Place from "./../../Components/Place";
 import Trip from "./../../Components/Trip";
 import Day from "./../../Components/Day";
+
 import { getAllTripsFromUser, createTrip, serviceDeleteTrip } from "./../../services/trip";
 import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import "./index.css";
@@ -12,7 +13,8 @@ class UserView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trips: []
+      trips: [],
+      alert: null
     };
   }
 
@@ -49,6 +51,14 @@ class UserView extends Component {
         console.log(error);
       });
   };
+  // deleteThisGoal = () => {
+  //   console.log("click");
+  //   const getAlert = () => <> </>;
+
+  //   this.setState({
+  //     alert: getAlert()
+  //   });
+  // };
 
   render() {
     let tripId;
