@@ -14,8 +14,9 @@ function Trip(props) {
         width={64}
         height={64}
         className="mr-3"
-        src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
-        alt="Generic placeholder"
+        // src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+        src="https://i.imgur.com/VwtnMdl.png"
+        alt="trip icon"
       />
       <Media.Body>
         <h5>{name}</h5>

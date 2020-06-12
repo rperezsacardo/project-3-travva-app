@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { getAllPlacesFromApi } from "../../services/places";
 import { signOut, loadUserInfo } from "./../../services/authentication";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button
+  // FontAwesomeIcon
+} from "react-bootstrap";
 import { Link, Switch, Route } from "react-router-dom";
 import "./NavBar.css";
 
@@ -71,6 +79,9 @@ export class NavBar extends Component {
           </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {/* <span>
+          <FontAwesomeIcon icon="bars" color="#20FC8F" size="2x" />
+        </span> */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <Nav.Link>

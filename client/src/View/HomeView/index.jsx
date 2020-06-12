@@ -7,6 +7,7 @@ import index from "./index.css";
 import { Link } from "react-router-dom";
 
 import { Jumbotron, Button, Container, Row, Col } from "react-bootstrap";
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 class HomeView extends Component {
   render() {
@@ -26,6 +27,7 @@ class HomeView extends Component {
             </Button>
           </p>
         </Jumbotron>
+
         <Container>
           <Row className="pt-1 pb-5">
             <Col className="pt-5">

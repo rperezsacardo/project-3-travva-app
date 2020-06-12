@@ -14,6 +14,7 @@ import Day from "./Components/Day";
 import { Container, Row, Col } from "react-bootstrap";
 import { Route, Link, Switch, Redirect, withRouter } from "react-router-dom";
 import { loadUserInfo } from "./services/authentication";
+import FooterPage from "./Components/FooterPage";
 
 export class App extends Component {
   constructor() {
@@ -67,6 +68,7 @@ export class App extends Component {
           <Route path="/error/:code" component={ErrorView} />
           <Redirect to="/error/404" />
         </Switch>
+        <FooterPage />
       </div>
     );
   }

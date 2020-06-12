@@ -140,8 +140,9 @@ class SingleTripView extends Component {
                     width={64}
                     height={64}
                     className="mr-3"
-                    src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
-                    alt="Generic placeholder"
+                    // src="https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+                    src="https://i.imgur.com/iGNfFpJ.png"
+                    alt="day icon"
                   />
                   <Media.Body>
                     <Day {...day} day={this.AddDay} index={index} />

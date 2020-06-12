@@ -52,12 +52,14 @@ class Place extends Component {
         <Card.Body>
           <div className="mb-2">
             <Card.Title className="mb-0">{name}</Card.Title>
-            <Card.Text className="text-secondary">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since....
-              {<Link to={`/user/${id}/${tripId}/${day}/${placeId}`}>Read More</Link>}
+            <Card.Text className="mt-2 text-secondary">
+              Lorem Ipsum is simply dummy text of the printing and type-setting industry. Lorem
+              Ipsum has been the industry's standard dummy text ever...
+              {<Link to={`/user/${id}/${tripId}/${day}/${placeId}`}> Read More ↗</Link>}
             </Card.Text>
-            <Badge variant="warning">Rating {rating}</Badge>
+            <Badge className="mt-2 mb-2" variant="warning">
+              Rating {rating}
+            </Badge>
           </div>
           {(this.props.addPlace && (
             <>

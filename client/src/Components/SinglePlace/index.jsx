@@ -70,6 +70,7 @@ class SinglePlace extends Component {
         url
       } = this.state.place;
       const placeName = this.state.place;
+      console.log(this.state.place);
     }
 
     return (
@@ -77,12 +78,32 @@ class SinglePlace extends Component {
         <Card.Img variant="top" src={this.state.photoWithKey} />
         <Card.Body>
           {this.state.place && (
-            <div className="mb-2">
+            <div className="mb-2 mt-2">
               <h2>{this.state.place.name}</h2>
-              <Card.Text className="text-secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500's.
-              </Card.Text>
+              {/*////////////*/}
+              <p className="text-secondary text-muted">{this.state.place.vicinity}</p>
+
+              <p className="text-secondary mb-5">
+                {this.state.place.opening_hours && (
+                  <>
+                    {!this.state.place.opening_hours.open_now && (
+                      <Badge variant="danger">closed now</Badge>
+                    )}{" "}
+
+                    {this.state.place.opening_hours.open_now && (
+                      <Badge variant="success">open now</Badge>
+                    )}{" "}
+                  </>
+                )}
+
+                {this.state.place.website && (
+                  <a href={this.state.place.website} target="noref">
+                    Website ↗
+                  </a>
+                )}
+              </p>
+
+              {/*////////////*/}
 
               {/*Google Maps Embed*/}
               <div className="mapouter">
