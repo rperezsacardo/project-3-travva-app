@@ -144,13 +144,10 @@ class SingleTripView extends Component {
                     alt="Generic placeholder"
                   />
                   <Media.Body>
-                    <Day {...day} day={this.AddDay} index={index} />
                     <h5>Day {index + 1}</h5>
-                    <ul className="text-secondary less-width">
-                      <li>Place #1</li>
-                      <li>Place #2</li>
-                      <li>Place #3</li>
-                    </ul>
+                   
+                    <Day {...day} day={this.AddDay} index={index} />
+
                     <Button variant="success">
                       <Link className="white" to={`/user/${id}/${tripId}/${index + 1}`}>
                         Plan Day

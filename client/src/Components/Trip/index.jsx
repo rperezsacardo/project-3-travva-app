@@ -13,15 +13,16 @@ class Trip extends Component {
     };
   }
   hideAlert = () => {
-    console.log("Hiding alert...");
     this.setState({
       alert: !this.state.alert
     });
   };
 
   render() {
-    const { name, _id, numOfDays, userId, index } = this.props;
+    const { name, _id, numOfDays, userId, index, allDays } = this.props;
     const tripId = _id;
+    console.log(allDays);
+    let allDaysSize;
 
     return (
       <Media className="ml-3 mb-4">
@@ -35,9 +36,7 @@ class Trip extends Component {
         <Media.Body>
           <h5>{name}</h5>
           <p className="text-secondary less-width">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-            has been the industry's standard dummy text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a type specimen book.
+            {(allDays.length && <> Number of days: {allDays.length} </>) || <p> (empty trip) </p>}
           </p>
           <Button variant="success">
             <Link className="white" to={`/user/${userId}/${_id}`}>
@@ -46,11 +45,10 @@ class Trip extends Component {
           </Button>
           {this.state.alert && (
             <SweetAlert
-              warning
               showCancel
-              confirmBtnText="Yes, delete it!"
-              confirmBtnBsStyle="sucess"
-              title={("Are you sure?", name)}
+              confirmBtnText="Delete"
+              confirmBtnBsStyle="link"
+              title={`Delete Trip "${name}"  ?`}
               onConfirm={() => {
                 this.props.deleteTrip(_id);
                 this.hideAlert();
@@ -58,7 +56,7 @@ class Trip extends Component {
               onCancel={this.hideAlert}
               focusCancelBtn
             >
-              You will not be able to recover this imaginary file!
+              You will not be able to recover this trip file!
             </SweetAlert>
           )}
           <Button variant="link" onClick={() => this.hideAlert()}>
