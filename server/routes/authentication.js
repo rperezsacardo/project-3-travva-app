@@ -8,7 +8,6 @@ const User = require("./../models/user");
 const router = new Router();
 
 router.post("/sign-up", (req, res, next) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
   bcryptjs
     .hash(password, 10)
@@ -29,7 +28,6 @@ router.post("/sign-up", (req, res, next) => {
 });
 
 router.post("/sign-in", (req, res, next) => {
-  console.log("in");
   let user;
   const { email, password } = req.body;
   User.findOne({ email })
@@ -55,8 +53,6 @@ router.post("/sign-in", (req, res, next) => {
 });
 
 router.get("/me", (req, res) => {
-  //console.log("/me visted");
-  console.log(req.user);
   res.json({
     user: req.user || null
   });

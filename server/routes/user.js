@@ -5,19 +5,16 @@ const userRouter = new Router();
 const routeGuard = require("./../middleware/route-guard");
 const Trip = require("./../models/trip");
 
-
-userRouter.get("/:id", (req, res, next) => {
-  console.log("all trips"); //Show all trips from user
+userRouter.get("/:id", routeGuard, (req, res, next) => {
   const id = req.params.id;
   Trip.find({ userId: id })
     .then((result) => {
-      console.log(result);
       res.json({ result });
     })
     .catch((error) => next(error));
 });
 
-userRouter.post("/:id", (req, res, next) => {
+userRouter.post("/:id", routeGuard, (req, res, next) => {
   //Show all trips from user
   const { id } = req.params;
   Trip.create({
@@ -26,15 +23,12 @@ userRouter.post("/:id", (req, res, next) => {
     allDays: []
   })
     .then((trip) => {
-      console.log("new trip", trip);
       res.json({ trip });
     })
     .catch((error) => next(error));
 });
 
-userRouter.get("/:id/:tripId", (req, res) => {
-  console.log("this");
-
+userRouter.get("/:id/:tripId", routeGuard, (req, res) => {
   res.json({ type: "success", data: { title: "One trip" } });
 });
 

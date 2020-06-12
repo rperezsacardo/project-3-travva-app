@@ -16,6 +16,7 @@ class Place extends Component {
 
   loadInfo = () => {
     const { name, photo, placeId, bookmarked } = this.props;
+
     const photoWithKey =
       photo === undefined
         ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
@@ -38,9 +39,8 @@ class Place extends Component {
   };
 
   render() {
-    console.log("status", this.state.bookmarked);
-    const { name, photo, placeId } = this.props;
-    //console.log(`props: ${this.props.id}`);
+    const { name, photo, placeId, rating, day, id, tripId } = this.props;
+
     return (
       <Card className="shadow-sm rounded h-100">
         <Card.Img variant="top" src={this.state.photoWithKey} alt={this.props.name} />
@@ -50,9 +50,9 @@ class Place extends Component {
             <Card.Text className="text-secondary">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
               has been the industry's standard dummy text ever since....
-              {<Link to={"/"}>Read More</Link>}
+              {<Link to={`/user/${id}/${tripId}/${day}/${placeId}`}>Read More</Link>}
             </Card.Text>
-            <Badge variant="warning">Rating 4.5</Badge>
+            <Badge variant="warning">Rating {rating}</Badge>
           </div>
           {(this.props.addPlace && (
             <>

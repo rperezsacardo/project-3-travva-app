@@ -32,7 +32,6 @@ const getDayPlaces = (body) => {
     .get(`/api/trip/${id}/${tripId}/${day}`)
     .then((document) => {
       const trip = document.data.result.allDays[day - 1]; // send just the day Obj;
-      // console.log(trip.allDays[day - 1]);
       return Promise.resolve(trip);
     })
     .catch((error) => {
@@ -42,12 +41,11 @@ const getDayPlaces = (body) => {
 
 const newPlace = (body) => {
   const { id, tripId, day, placeId } = body;
-  console.log("service body", body);
+
   return axios
     .post(`/api/trip/new-place`, body)
     .then((document) => {
-      const day = document.data.result; //.result //????;
-      console.log(day);
+      const day = document.data.result;
       return Promise.resolve(day);
     })
     .catch((error) => {
@@ -57,12 +55,10 @@ const newPlace = (body) => {
 
 const removePlace = (body) => {
   const { id, tripId, day, placeId } = body;
-  console.log("service body", body);
   return axios
     .post(`/api/trip/remove-place`, body)
     .then((document) => {
       const day = document.data.result;
-      console.log(day);
       return Promise.resolve(day);
     })
     .catch((error) => {
