@@ -24,14 +24,19 @@ class Place extends Component {
 
     this.setState({
       photoWithKey,
-      bookmarked
+      bookmarked,
+      photo
     });
   };
 
   componentDidMount = () => {
     this.loadInfo();
   };
-
+  componentWillUpdate = (prevProps, prevState, snapshot) => {
+    if (prevState.photo !== prevProps.photo) {
+      this.loadInfo();
+    }
+  };
   placeBookmarked = () => {
     this.setState({
       bookmarked: !this.state.bookmarked

@@ -38,6 +38,7 @@ class SingleTripView extends Component {
     const { id, tripId } = this.props.match.params;
     getDays({ id, tripId })
       .then((result) => {
+        console.log(result);
         this.setState({
           trip: result,
           allDays: result.allDays,
