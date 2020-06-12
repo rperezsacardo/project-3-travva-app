@@ -20,9 +20,9 @@ class Trip extends Component {
   };
 
   render() {
-    console.log(this);
     const { name, _id, numOfDays, userId, index } = this.props;
     const tripId = _id;
+
     return (
       <Media className="ml-3 mb-4">
         <img
@@ -50,7 +50,7 @@ class Trip extends Component {
               showCancel
               confirmBtnText="Yes, delete it!"
               confirmBtnBsStyle="sucess"
-              title="Are you sure?"
+              title={("Are you sure?", name)}
               onConfirm={() => {
                 this.props.deleteTrip(this.props._id);
                 this.hideAlert();

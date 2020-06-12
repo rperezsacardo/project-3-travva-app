@@ -18,6 +18,14 @@ class UserView extends Component {
     };
   }
 
+  // componentDidUpdate = (prevProps, prevState, snapshot) => {
+  //   console.log("will");
+  //   if (prevState.trips !== prevProps.trips) {
+  //     console.log("if");
+  //     this.allTrips();
+  //   }
+  // };
+
   componentDidMount = () => {
     this.allTrips();
   };
@@ -43,6 +51,7 @@ class UserView extends Component {
   };
 
   deleteTrip = (tripId) => {
+    console.log(tripId);
     serviceDeleteTrip({ tripId })
       .then((result) => {
         this.allTrips();
@@ -51,18 +60,11 @@ class UserView extends Component {
         console.log(error);
       });
   };
-  // deleteThisGoal = () => {
-  //   console.log("click");
-  //   const getAlert = () => <> </>;
-
-  //   this.setState({
-  //     alert: getAlert()
-  //   });
-  // };
 
   render() {
     let tripId;
     const allTrips = this.state.trips;
+    console.log("trip");
     return (
       <div>
         <Breadcrumb>
