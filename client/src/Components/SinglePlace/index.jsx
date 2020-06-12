@@ -3,6 +3,7 @@ import { Link, Route } from "react-router-dom";
 import { getAllPlacesFromApi, getPlaceInformation } from "../../services/places";
 import { Card, Button, Badge } from "react-bootstrap";
 import Comments from "./../Comments";
+import "./index.css";
 let status = true;
 const onOff = () => !status;
 
@@ -43,7 +44,7 @@ class SinglePlace extends Component {
       })
       .catch((error) => console.log(error));
   };
-  
+
   placeBookmarked = () => {
     this.setState({
       bookmarked: !this.state.bookmarked
@@ -73,34 +74,40 @@ class SinglePlace extends Component {
     }
 
     return (
-      <Card className="shadow-sm rounded h-100">
+      <Card className="shadow-sm rounded h-100 center">
         <Card.Img variant="top" src={this.state.photoWithKey} />
         <Card.Body>
           {this.state.place && (
             <div className="mb-2">
-              <h1>{this.state.place.name}</h1>
-              <Card.Title className="mb-0">{this.state.place.name}</Card.Title>
+              <h2>{this.state.place.name}</h2>
               <Card.Text className="text-secondary">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since....
-                <a target="_blank" rel="noopener noreferrer" href={this.state.place.url}>
-                  {" "}
-                  Maps
-                </a>
+                Ipsum has been the industry's standard dummy text ever since the 1500's.
               </Card.Text>
-              <Badge variant="warning">Rating {this.state.place.rating}</Badge>
+
+              {/*Google Maps Embed*/}
+              <div className="mapouter">
+                <div className="gmap_canvas">
+                  <iframe
+                    className="gmap_canvas"
+                    src={`${this.state.place.url}&q=&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                  ></iframe>
+                </div>
+                <hr />
+              </div>
+              {/*Google Maps Embed*/}
             </div>
           )}
           {this.state.place && (
-            <ul>
+            <>
               {this.state.place.reviews.map((comment) => {
-                return (
-                  <li>
-                    <Comments {...comment} />
-                  </li>
-                );
+                return <Comments {...comment} />;
               })}
-            </ul>
+            </>
           )}
           {(this.props.bookmarked && (
             <>
