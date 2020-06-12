@@ -21,8 +21,8 @@ const getPlaceInformation = (body) => {
   return basePlace
     .post(`/single-place`, body)
     .then((result) => {
-      const place = result.data.placeInfo;
-      const placeDocument = result.data.placeDocument;
+      const place = result.data.placeInfo; // google request Obj
+      const placeDocument = result.data.placeDocument; // Mongodb request
       return Promise.resolve({ place, placeDocument });
     })
     .catch((error) => {

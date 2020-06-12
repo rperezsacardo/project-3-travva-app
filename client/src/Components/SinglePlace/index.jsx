@@ -17,16 +17,6 @@ class SinglePlace extends Component {
     };
   }
 
-  loadInformation = () => {
-    const { placeId } = this.props.match.params;
-    getPlaceInformation({ placeId })
-      .then((result) => {
-        console.log(result);
-        this.updateInfo(result);
-      })
-      .catch((error) => console.log(error));
-  };
-
   updateInfo = (body) => {
     const { place, placeDocument } = body;
     const { photo } = placeDocument;
@@ -44,6 +34,16 @@ class SinglePlace extends Component {
       place
     });
   };
+
+  loadInformation = () => {
+    const { placeId } = this.props.match.params;
+    getPlaceInformation({ placeId })
+      .then((result) => {
+        this.updateInfo(result);
+      })
+      .catch((error) => console.log(error));
+  };
+  
   placeBookmarked = () => {
     this.setState({
       bookmarked: !this.state.bookmarked
@@ -56,6 +56,7 @@ class SinglePlace extends Component {
 
   render() {
     const { placeId, day, id, tripId } = this.props;
+    console.log(this.state.place);
 
     if (this.state.place) {
       const {
