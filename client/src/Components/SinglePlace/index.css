@@ -1,6 +1,10 @@
-@media (min-width: 800px) {
+.less-width {
+  width: 100%;
+}
+
+@media screen and (min-width: 800px) {
   .less-width {
-    width: 50%;
+    width: 85%;
     /* background-color: blue; */
   }
 }

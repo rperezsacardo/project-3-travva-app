@@ -55,9 +55,8 @@ placeRouter.get("/search", routeGuard, (req, res, next) => {
         let photo;
 
         if (result.photos) {
-          const maxwidth = 1400;
           const reference = result.photos[0].photo_reference.toString();
-          photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=${maxwidth}&photoreference=${reference}&key=`;
+          photo = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=1400&photoreference=${reference}&key=`;
         }
         return {
           placeId: result.place_id,

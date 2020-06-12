@@ -73,7 +73,7 @@ class SinglePlace extends Component {
     }
 
     return (
-      <Card className="shadow-sm rounded h-100 center">
+      <Card className="shadow-sm rounded h-100 center less-width">
         <Card.Img variant="top" src={this.state.photoWithKey} />
         <Card.Body>
           {this.state.place && (
