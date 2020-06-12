@@ -1,11 +1,27 @@
 import React from "react";
+import { Media, Container, Badge } from "react-bootstrap";
+import "./index.css";
 
 function Comments(props) {
   return (
-    <div>
-      <small>{props.author_name}</small>
-      <p>{props.text}</p>
-    </div>
+    <Media className="mb-3">
+      <img
+        width={64}
+        height={64}
+        className="mr-3"
+        src={props.profile_photo_url}
+        alt="author profile"
+      />
+      <Media.Body>
+        <h5>
+          <Badge variant="warning">Rating: {props.rating}/5</Badge>
+        </h5>
+        <small>
+          {props.author_name}, <i>{props.relative_time_description}</i>
+        </small>
+        <p>{props.text}</p>
+      </Media.Body>
+    </Media>
   );
 }
 
