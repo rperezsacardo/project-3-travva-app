@@ -6,7 +6,7 @@ const FooterPage = () => {
   return (
     <MDBFooter className="font-small pt-4 mt-4 footer white">
       <MDBContainer fluid className="text-center text-md-left">
-        <MDBRow>
+        <MDBRow className="mt-3">
           <MDBCol md="6">
             <h5 className="title">Learn More</h5>
             <p>Built with React, Node and Google Places API under the hood.</p>

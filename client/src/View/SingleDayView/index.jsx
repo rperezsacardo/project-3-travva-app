@@ -79,7 +79,7 @@ class SingleDayView extends Component {
     //console.log(userPlaces);
 
     return (
-      <div>
+      <div className="mb-3 pb-5">
         <Breadcrumb>
           <Breadcrumb.Item>
             <Link to="/">Home</Link>
