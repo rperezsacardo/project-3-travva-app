@@ -16,8 +16,8 @@ class HomeView extends Component {
         <Jumbotron fluid className="pl-3 pr-1">
           <h1>Your world, discovered.</h1>
           <p>
-            With Travva, you can take your travels to the next level. Click the button below to get
-            started.
+            With Travva, your trip planning will be as enjoyable as the journey itself. Click the
+            button below to get started.
           </p>
           <p>
             <Button variant="success">
