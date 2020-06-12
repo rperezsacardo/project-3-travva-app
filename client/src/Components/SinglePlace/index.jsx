@@ -43,7 +43,7 @@ class SinglePlace extends Component {
       })
       .catch((error) => console.log(error));
   };
-  
+
   placeBookmarked = () => {
     this.setState({
       bookmarked: !this.state.bookmarked
@@ -56,7 +56,6 @@ class SinglePlace extends Component {
 
   render() {
     const { placeId, day, id, tripId } = this.props;
-    console.log(this.state.place);
 
     if (this.state.place) {
       const {

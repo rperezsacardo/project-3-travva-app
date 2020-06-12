@@ -16,6 +16,7 @@ userRouter.get("/:id", routeGuard, (req, res, next) => {
 
 userRouter.post("/:id", routeGuard, (req, res, next) => {
   //Show all trips from user
+
   const { id } = req.params;
   Trip.create({
     name: "My New Trip",

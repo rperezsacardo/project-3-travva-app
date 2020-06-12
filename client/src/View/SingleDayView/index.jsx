@@ -76,7 +76,7 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     const userPlaces = this.state.userPlaces;
     const { id, tripId, day } = this.props.match.params;
-    console.log(userPlaces);
+    //console.log(userPlaces);
 
     return (
       <div>
