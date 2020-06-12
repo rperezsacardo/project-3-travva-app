@@ -89,7 +89,6 @@ class SinglePlace extends Component {
                     {!this.state.place.opening_hours.open_now && (
                       <Badge variant="danger">closed now</Badge>
                     )}{" "}
-
                     {this.state.place.opening_hours.open_now && (
                       <Badge variant="success">open now</Badge>
                     )}{" "}

@@ -8,7 +8,7 @@ const FooterPage = () => {
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow className="mt-3">
           <MDBCol md="6">
-            <h5 className="title">Learn More</h5>
+            <h5 className="title">About this Project</h5>
             <p>Built with React, Node and Google Places API under the hood.</p>
           </MDBCol>
           <MDBCol md="6">
