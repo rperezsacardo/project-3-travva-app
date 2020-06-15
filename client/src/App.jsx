@@ -10,11 +10,13 @@ import UserView from "./View/UserView";
 import Navbar from "./Components/NavBar";
 import Place from "./Components/Place";
 import Trip from "./Components/Trip";
+import PushFooter from "./Components/PushFooter";
 import Day from "./Components/Day";
 import { Container, Row, Col } from "react-bootstrap";
 import { Route, Link, Switch, Redirect, withRouter } from "react-router-dom";
 import { loadUserInfo } from "./services/authentication";
 import FooterPage from "./Components/FooterPage";
+import "./App.css";
 
 export class App extends Component {
   constructor() {
@@ -42,7 +44,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="content">
         <Navbar updateUser={this.updateUser} user={this.state.user} />
         <Switch>
           <Route component={HomeView} exact path="/" />
@@ -68,7 +70,10 @@ export class App extends Component {
           <Route path="/error/:code" component={ErrorView} />
           <Redirect to="/error/404" />
         </Switch>
-        <FooterPage />
+        <PushFooter />
+        <PushFooter />
+        <PushFooter />
+        <FooterPage className="footer" />
       </div>
     );
   }

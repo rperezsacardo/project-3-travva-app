@@ -29,7 +29,7 @@ class HomeView extends Component {
         </Jumbotron>
 
         <Container>
-          <Row className="pt-1 pb-5">
+          <Row className="pt-5">
             <Col className="pt-5">
               <img src="card1.png" />
             </Col>
