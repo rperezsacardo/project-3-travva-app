@@ -1,11 +1,15 @@
 .content {
-  min-height: 100%;
+  position: relative;
+  min-height: 100vh;
 
   /* Equal to height of footer */
   /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -50px;
+  padding-bottom: 250px;
 }
 
-.footer {
-  height: 100%;
+.content-wrap {
+  padding-bottom: 120px;
+}
+.paddings {
+  padding-top: 80px;
 }

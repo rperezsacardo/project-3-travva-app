@@ -1,6 +1,11 @@
 .footer {
-  background-color: #052250;
+  background-color: #0D2C56;
   color: #e3e7ec;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 2.5rem; */
 }
 
 .white,

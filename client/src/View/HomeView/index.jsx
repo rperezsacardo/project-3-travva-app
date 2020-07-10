@@ -28,15 +28,15 @@ class HomeView extends Component {
           </p>
         </Jumbotron>
 
-        <Container>
-          <Row className="pt-5">
-            <Col className="pt-5">
+        <Container className="paddings">
+          <Row>
+            <Col className="card-img">
               <img src="card1.png" />
             </Col>
-            <Col className="pt-5">
+            <Col className="card-img">
               <img src="card2.png" />
             </Col>
-            <Col className="pt-5">
+            <Col className="card-img">
               <img src="card3.png" />
             </Col>
           </Row>

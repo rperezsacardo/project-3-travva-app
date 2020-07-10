@@ -10,3 +10,15 @@ img {
 .white:hover {
   color: white;
 }
+
+/* @media (max-width: 415px) {
+  .card-img {
+    display: block;
+  }
+} */
+
+/* @media (min-width: 600px) {
+  .card-img {
+    display: block;
+  }
+} */
