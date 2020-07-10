@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import NavBar from "./../../Components/NavBar";
-import Place from "./../../Components/Place";
-import Trip from "./../../Components/Trip";
-import Day from "./../../Components/Day";
-import { Route, Link, Switch } from "react-router-dom";
-import { getSingleTrip, serviceUpdateTripName } from "./../../services/trip";
-import { newDay, getDays } from "./../../services/day";
-import { Button, Breadcrumb, Media, Form, Container } from "react-bootstrap";
+import React, { Component } from 'react';
+import NavBar from './../../Components/NavBar';
+import Place from './../../Components/Place';
+import Trip from './../../Components/Trip';
+import Day from './../../Components/Day';
+import { Route, Link, Switch } from 'react-router-dom';
+import { getSingleTrip, serviceUpdateTripName } from './../../services/trip';
+import { newDay, getDays } from './../../services/day';
+import { Button, Breadcrumb, Media, Form, Container } from 'react-bootstrap';
 
 class SingleTripView extends Component {
   constructor() {
@@ -15,7 +15,7 @@ class SingleTripView extends Component {
       trip: null,
       allDays: [],
       editName: false,
-      tripName: ""
+      tripName: ''
     };
   }
 
@@ -38,7 +38,6 @@ class SingleTripView extends Component {
     const { id, tripId } = this.props.match.params;
     getDays({ id, tripId })
       .then((result) => {
-        console.log(result);
         this.setState({
           trip: result,
           allDays: result.allDays,
@@ -94,7 +93,7 @@ class SingleTripView extends Component {
         </Breadcrumb>
 
         <div className="profile">
-          <h2 className="mt-3 ml-3 mb-3">{this.state.tripName}</h2>{" "}
+          <h2 className="mt-3 ml-3 mb-3">{this.state.tripName}</h2>{' '}
           {(this.state.editName && (
             <>
               <Container>
@@ -146,7 +145,7 @@ class SingleTripView extends Component {
                   />
                   <Media.Body>
                     <h5>Day {index + 1}</h5>
-                   
+
                     <Day {...day} day={this.AddDay} index={index} />
 
                     <Button variant="success">

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import NavBar from "./../../Components/NavBar";
-import Place from "./../../Components/Place";
-import Trip from "./../../Components/Trip";
-import Day from "./../../Components/Day";
+import React, { Component } from 'react';
+import NavBar from './../../Components/NavBar';
+import Place from './../../Components/Place';
+import Trip from './../../Components/Trip';
+import Day from './../../Components/Day';
 
-import { getAllTripsFromUser, createTrip, serviceDeleteTrip } from "./../../services/trip";
-import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import "./index.css";
-import { Link } from "react-router-dom";
+import { getAllTripsFromUser, createTrip, serviceDeleteTrip } from './../../services/trip';
+import { Card, Button, Badge, Container, Row, Col, Breadcrumb } from 'react-bootstrap';
+import './index.css';
+import { Link } from 'react-router-dom';
 
 class UserView extends Component {
   constructor(props) {
@@ -17,14 +17,6 @@ class UserView extends Component {
       alert: null
     };
   }
-
-  // componentDidUpdate = (prevProps, prevState, snapshot) => {
-  //   console.log("will");
-  //   if (prevState.trips !== prevProps.trips) {
-  //     console.log("if");
-  //     this.allTrips();
-  //   }
-  // };
 
   componentDidMount = () => {
     this.allTrips();
@@ -36,7 +28,7 @@ class UserView extends Component {
       .then((result) => {
         this.allTrips();
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   allTrips = () => {
@@ -51,7 +43,6 @@ class UserView extends Component {
   };
 
   deleteTrip = (tripId) => {
-    console.log(tripId);
     serviceDeleteTrip(tripId)
       .then((result) => {
         this.allTrips();
@@ -63,7 +54,6 @@ class UserView extends Component {
 
   render() {
     let tripId;
-    console.log(this.props.user);
     const allTrips = this.state.trips;
 
     return (

@@ -21,7 +21,6 @@ class SinglePlace extends Component {
   updateInfo = (body) => {
     const { place, placeDocument } = body;
     const { photo } = placeDocument;
-    console.log(photo);
 
     const photoWithKey =
       photo === undefined
@@ -70,7 +69,6 @@ class SinglePlace extends Component {
         url
       } = this.state.place;
       const placeName = this.state.place;
-      console.log(this.state.place);
     }
 
     return (
@@ -89,7 +87,6 @@ class SinglePlace extends Component {
                     {!this.state.place.opening_hours.open_now && (
                       <Badge variant="danger">closed now</Badge>
                     )}{" "}
-
                     {this.state.place.opening_hours.open_now && (
                       <Badge variant="success">open now</Badge>
                     )}{" "}
@@ -122,7 +119,7 @@ class SinglePlace extends Component {
               {/*Google Maps Embed*/}
             </div>
           )}
-          {this.state.place && (
+          {this.state.place.reviews && (
             <>
               {this.state.place.reviews.map((comment) => {
                 return <Comments {...comment} />;

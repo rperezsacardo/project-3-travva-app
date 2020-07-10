@@ -44,7 +44,6 @@ const getAllTripsFromUser = (body) => {
 };
 
 const serviceDeleteTrip = (tripId) => {
-  console.log(tripId);
   return axios
     .post(`/api/trip/delete/`, { tripId })
     .then((result) => {

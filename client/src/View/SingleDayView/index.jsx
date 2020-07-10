@@ -1,18 +1,18 @@
-import React, { Component, useState } from "react";
-import NavBar from "./../../Components/NavBar";
-import Place from "./../../Components/Place";
-import Trip from "./../../Components/Trip";
-import Day from "./../../Components/Day";
-import { getAllPlacesFromApi } from "../../services/places";
-import { getDayPlaces, newPlace, removePlace } from "./../../services/day";
-import { Container, Row, Col, Form, Breadcrumb, Button } from "react-bootstrap";
-import { Link, withRouter } from "react-router-dom";
+import React, { Component, useState } from 'react';
+import NavBar from './../../Components/NavBar';
+import Place from './../../Components/Place';
+import Trip from './../../Components/Trip';
+import Day from './../../Components/Day';
+import { getAllPlacesFromApi } from '../../services/places';
+import { getDayPlaces, newPlace, removePlace } from './../../services/day';
+import { Container, Row, Col, Form, Breadcrumb, Button } from 'react-bootstrap';
+import { Link, withRouter } from 'react-router-dom';
 
 class SingleDayView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      query: "",
+      query: '',
       places: null,
       userPlaces: null
     };
@@ -51,7 +51,7 @@ class SingleDayView extends Component {
           userPlaces: userPlaces.dayPlan
         });
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => console.log('error', error));
   };
 
   showPlaces = () => {
@@ -76,7 +76,6 @@ class SingleDayView extends Component {
     const allPlaces = this.state.places;
     const userPlaces = this.state.userPlaces;
     const { id, tripId, day } = this.props.match.params;
-    //console.log(userPlaces);
 
     return (
       <div className="mb-3 pb-5">

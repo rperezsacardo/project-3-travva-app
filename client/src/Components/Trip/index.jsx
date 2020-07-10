@@ -21,7 +21,6 @@ class Trip extends Component {
   render() {
     const { name, _id, numOfDays, userId, index, allDays } = this.props;
     const tripId = _id;
-    console.log(allDays);
     let allDaysSize;
 
     return (

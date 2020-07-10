@@ -53,7 +53,6 @@ router.post("/sign-in", (req, res, next) => {
 });
 
 router.get("/me", (req, res) => {
-  console.log(req.user);
   res.json({
     user: req.user || null
   });
