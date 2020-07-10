@@ -1,12 +1,13 @@
-import React, { Component, useState } from 'react';
-import NavBar from './../../Components/NavBar';
-import Place from './../../Components/Place';
-import Trip from './../../Components/Trip';
-import Day from './../../Components/Day';
-import { getAllPlacesFromApi } from '../../services/places';
-import { getDayPlaces, newPlace, removePlace } from './../../services/day';
-import { Container, Row, Col, Form, Breadcrumb, Button } from 'react-bootstrap';
-import { Link, withRouter } from 'react-router-dom';
+import React, { Component, useState } from "react";
+import NavBar from "./../../Components/NavBar";
+import Place from "./../../Components/Place";
+import Trip from "./../../Components/Trip";
+import Day from "./../../Components/Day";
+import { getAllPlacesFromApi } from "../../services/places";
+import { getDayPlaces, newPlace, removePlace } from "./../../services/day";
+import { Container, Row, Col, Form, Breadcrumb, Button } from "react-bootstrap";
+import { Link, withRouter } from "react-router-dom";
+import './index.css'
 
 class SingleDayView extends Component {
   constructor(props) {
