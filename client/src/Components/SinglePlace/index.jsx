@@ -1,9 +1,12 @@
-import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-import { getAllPlacesFromApi, getPlaceInformation } from "../../services/places";
-import { Card, Button, Badge } from "react-bootstrap";
-import Comments from "./../Comments";
-import "./index.css";
+import React, { Component } from 'react';
+import { Link, Route } from 'react-router-dom';
+import {
+  getAllPlacesFromApi,
+  getPlaceInformation
+} from '../../services/places';
+import { Card, Button, Badge } from 'react-bootstrap';
+import Comments from './../Comments';
+import './index.css';
 let status = true;
 const onOff = () => !status;
 
@@ -24,7 +27,7 @@ class SinglePlace extends Component {
 
     const photoWithKey =
       photo === undefined
-        ? "https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png"
+        ? 'https://meustc.com/wp-content/uploads/2020/01/placeholder-1.png'
         : photo + process.env.REACT_APP_GOOGLE_PLACES_API_KEY;
 
     this.setState({
@@ -72,29 +75,31 @@ class SinglePlace extends Component {
     }
 
     return (
-      <Card className="shadow-sm rounded h-100 center less-width">
-        <Card.Img variant="top" src={this.state.photoWithKey} />
+      <Card className='shadow-sm rounded h-100 center less-width'>
+        <Card.Img variant='top' src={this.state.photoWithKey} />
         <Card.Body>
           {this.state.place && (
-            <div className="mb-2 mt-2">
+            <div className='mb-2 mt-2'>
               <h2>{this.state.place.name}</h2>
               {/*////////////*/}
-              <p className="text-secondary text-muted">{this.state.place.vicinity}</p>
+              <p className='text-secondary text-muted'>
+                {this.state.place.vicinity}
+              </p>
 
-              <p className="text-secondary mb-5">
+              <p className='text-secondary mb-5'>
                 {this.state.place.opening_hours && (
                   <>
                     {!this.state.place.opening_hours.open_now && (
-                      <Badge variant="danger">closed now</Badge>
-                    )}{" "}
+                      <Badge variant='danger'>closed now</Badge>
+                    )}{' '}
                     {this.state.place.opening_hours.open_now && (
-                      <Badge variant="success">open now</Badge>
-                    )}{" "}
+                      <Badge variant='success'>open now</Badge>
+                    )}{' '}
                   </>
                 )}
 
                 {this.state.place.website && (
-                  <a href={this.state.place.website} target="noref">
+                  <a href={this.state.place.website} target='noref'>
                     Website ↗
                   </a>
                 )}
@@ -103,23 +108,22 @@ class SinglePlace extends Component {
               {/*////////////*/}
 
               {/*Google Maps Embed*/}
-              <div className="mapouter">
-                <div className="gmap_canvas">
+              <div className='mapouter'>
+                <div className='gmap_canvas'>
                   <iframe
-                    className="gmap_canvas"
+                    className='gmap_canvas'
                     src={`${this.state.place.url}&q=&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                    frameborder="0"
-                    scrolling="no"
-                    marginheight="0"
-                    marginwidth="0"
-                  ></iframe>
+                    frameborder='0'
+                    scrolling='no'
+                    marginheight='0'
+                    marginwidth='0'></iframe>
                 </div>
                 <hr />
               </div>
               {/*Google Maps Embed*/}
             </div>
           )}
-          {this.state.place.reviews && (
+          {this.state.place && (
             <>
               {this.state.place.reviews.map((comment) => {
                 return <Comments {...comment} />;
@@ -129,23 +133,21 @@ class SinglePlace extends Component {
           {(this.props.bookmarked && (
             <>
               <Button
-                variant="success"
+                variant='success'
                 onClick={() => {
                   this.props.addPlace(this.state.place.place_id);
-                }}
-              >
+                }}>
                 ➕ Add to Day
               </Button>
             </>
           )) || (
             <>
               <Button
-                variant="outline-success"
+                variant='outline-success'
                 onClick={() => {
                   this.props.removePlace(this.state.place.place_id);
                   this.placeBookmarked();
-                }}
-              >
+                }}>
                 ➖ Remove
               </Button>
             </>
